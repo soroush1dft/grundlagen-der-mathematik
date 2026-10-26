@@ -1,0 +1,351 @@
+% ==============================================================================
+% Kapitel 1: Logik
+% ==============================================================================
+
+\chapter{Logik}
+\label{chap:logik}
+
+\vorlesungsdatum{26. Oktober 2026}{26102026.pdf}
+
+In diesem Kapitel werden die aussagen- und prädikatenlogischen Grundlagen erarbeitet, die das sprachliche und formale Fundament für die gesamte Hochschulmathematik bilden. Die Logik dient in der Mathematik als präzises Werkzeug zur widerspruchsfreien Formulierung von Aussagen, Definitionen und Beweisen.
+
+---
+
+\section{Aussagen}
+\label{sec:aussagen}
+
+Ausgangspunkt der formalen Logik ist der Begriff der \emph{Aussage}.
+
+\begin{definition}[Aussage]
+Eine \textbf{Aussage} ist ein sprachlicher, grammatikalisch korrekter Ausdruck (Satz), welcher eindeutig \textbf{wahr} ($1$ bzw.\ $w$) oder eindeutig \textbf{falsch} ($0$ bzw.\ $f$) ist.
+\end{definition}
+
+Die klassische Aussagenlogik beruht dabei auf dem fundamentalen \textbf{Prinzip der Zweiwertigkeit}, welches sich in zwei Kernprinzipien aufspaltet:
+
+\begin{enumerate}[leftmargin=1.8em]
+  \item \textbf{Prinzip vom ausgeschlossenen Widerspruch (\textit{Principium contradictionis}):}\\
+  Eine Aussage kann nicht zugleich wahr und falsch sein.
+  \item \textbf{Satz vom ausgeschlossenen Dritten (\textit{Tertium non datur}):}\\
+  Eine Aussage besitzt stets einen der Wahrheitswerte \glqq wahr\grqq\ oder \glqq falsch\grqq. Ein dritter Zustand wie \glqq vielleicht\grqq\ oder \glqq unbestimmt\grqq\ existiert nicht.
+\end{enumerate}
+
+\begin{bemerkung}[Abgrenzung zu Nicht-Aussagen]
+Nicht jeder grammatikalisch wohlgeformte sprachliche Ausdruck ist eine mathematische Aussage:
+\begin{itemize}
+  \item \textbf{Fragen:} \glqq Wie spät ist es?\grqq\ (besitzt keinen Wahrheitswert)
+  \item \textbf{Meinungsäußerungen / Werturteile:} \glqq Marburg ist eine schöne Stadt.\grqq
+  \item \textbf{Aufforderungen / Befehle:} \glqq Schließe bitte das Fenster!\grqq
+  \item \textbf{Terme ohne Relationszeichen:} $9 + 3$ ist keine Aussage (sondern ein mathematischer Term); $9 + 3 = 12$ hingegen ist eine wahre Aussage.
+  \item \textbf{Semantische Paradoxien:} \glqq Dieser Satz ist falsch\grqq\ (Lügner-Paradoxon; führt bei Zuweisung eines Wahrheitswerts sofort zu einem inneren Widerspruch).
+\end{itemize}
+\end{bemerkung}
+
+\begin{beispiel}[Erkennbarkeit des Wahrheitswerts]
+Um festzustellen, ob ein Satz eine Aussage darstellt, muss man den Wahrheitswert nicht zwingend unmittelbar kennen:
+\begin{enumerate}[leftmargin=1.5em]
+  \item \glqq $31\,274\,567$ ist eine Primzahl.\grqq\ ist eine Aussage. Sie ist objektiv wahr oder falsch, auch wenn die Verifikation einen Rechenaufwand erfordert.
+  \item \glqq Die Erde ist rund.\grqq\ ist eine wahre Aussage.
+  \item \glqq Dieser Satz besteht aus sechs Wörtern.\grqq\ ist ebenfalls eine wahre Aussage (selbstreferenziell, aber eindeutig entscheidbar).
+\end{enumerate}
+\end{beispiel}
+
+\subsection{Das Extensionalitätsprinzip}
+
+\begin{tcolorbox}[
+  enhanced, breakable,
+  colback=primary!5, colframe=primary,
+  arc=3pt, boxrule=0.8pt,
+  title={\bfseries\sffamily Extensionalitätsprinzip (Wahrheitsfunktionalität)}
+]
+  Der Wahrheitswert einer zusammengesetzten Aussage hängt \textbf{ausschließlich} von den Wahrheitswerten ihrer Teilaussagen ab, nicht von inhaltlichen, kausalen oder zeitlichen Zusammenhängen.
+\end{tcolorbox}
+
+\begin{bemerkung}[Unterschied zur Umgangssprache]
+In der natürlichen Sprache transportiert die Konjunktion \glqq und\grqq\ häufig eine implizite zeitliche Chronologie oder Kausalität:
+\begin{enumerate}[leftmargin=1.5em]
+  \item \glqq Sie verließ das Land und wurde reich.\grqq
+  \item \glqq Sie wurde reich und verließ das Land.\grqq
+\end{enumerate}
+In der formalen Logik ist die Verknüpfung $A \land B$ rein wahrheitsfunktional und kommutativ ($A \land B \equiv B \land A$). Kausale oder temporale Abhängigkeiten müssen, falls gewünscht, explizit formuliert werden.
+\end{bemerkung}
+
+---
+
+\section{Verknüpfungen und Wahrheitstafeln}
+\label{sec:verknuepfungen}
+
+Gegeben seien Aussagen $A$ und $B$. Mittels logischer Junktoren können neue, zusammengesetzte Aussagen gebildet werden. Aufgrund des Extensionalitätsprinzips lässt sich das Verhalten jeder Verknüpfung vollständig durch eine \textbf{Wahrheitstafel} erfassen.
+
+\begin{definition}[Grundlegende logische Verknüpfungen]
+Seien $A$ und $B$ Aussagen. Wir definieren:
+\begin{enumerate}[leftmargin=1.8em, itemsep=6pt]
+  \item \textbf{Konjunktion ($A \land B$, \glqq $A$ und $B$\grqq):}\\
+  $A \land B$ ist genau dann wahr, wenn sowohl $A$ als auch $B$ wahr sind.
+  \item \textbf{Disjunktion ($A \lor B$, \glqq $A$ oder $B$\grqq, inklusives Oder):}\\
+  $A \lor B$ ist wahr, sobald mindestens eine der Teilaussagen $A$ oder $B$ wahr ist.
+  \item \textbf{Antivalenz ($A \xor B$ bzw.\ $A \oplus B$, \glqq Entweder $A$ oder $B$\grqq, exklusives Oder / XOR):}\\
+  $A \xor B$ ist genau dann wahr, wenn die Aussagen $A$ und $B$ unterschiedliche Wahrheitswerte besitzen.
+  \item \textbf{Negation ($\neg A$ bzw.\ $\bar{A}$, \glqq Nicht $A$\grqq):}\\
+  Unäre Verknüpfung, die den Wahrheitswert von $A$ invertiert.
+  \item \textbf{Implikation ($A \Rightarrow B$, \glqq Wenn $A$, dann $B$\grqq, \glqq $A$ ist hinreichend für $B$\grqq, \glqq $B$ ist notwendig für $A$\grqq):}\\
+  $A \Rightarrow B$ ist nur dann falsch, wenn die Prämisse $A$ wahr und die Konklusion $B$ falsch ist. Ist die Prämisse falsch, so ist die Implikation stets wahr (\emph{Ex falso quodlibet}).
+  \item \textbf{Äquivalenz ($A \Leftrightarrow B$, \glqq $A$ genau dann, wenn $B$\grqq):}\\
+  $A \Leftrightarrow B$ ist genau dann wahr, wenn $A$ und $B$ denselben Wahrheitswert haben.
+\end{enumerate}
+\end{definition}
+
+\begin{table}[htbp]
+  \centering
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{ccccccc}
+    \toprule
+    $A$ & $B$ & $A \land B$ & $A \lor B$ & $A \xor B$ & $A \Rightarrow B$ & $A \Leftrightarrow B$ \\
+    \midrule
+    0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+    0 & 1 & 0 & 1 & 1 & 1 & 0 \\
+    1 & 0 & 0 & 1 & 1 & 0 & 0 \\
+    1 & 1 & 1 & 1 & 0 & 1 & 1 \\
+    \bottomrule
+  \end{tabular}
+  \quad
+  \begin{tabular}{cc}
+    \toprule
+    $A$ & $\neg A$ \\
+    \midrule
+    0 & 1 \\
+    1 & 0 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Wahrheitstafeln der binären und unären Verknüpfungen}
+\end{table}
+
+\begin{bemerkung}[Ex falso quodlibet -- Aus dem Falschen folgt Beliebiges]
+Die Wahrheitswerte der Implikation $A \Rightarrow B$ für den Fall $A = 0$ sind erfahrungsgemäß gewöhnungsbedürftig:
+\begin{itemize}
+  \item Formulierung: \glqq Wenn ich heute im Lotto gewinne, mache ich eine Weltreise.\grqq\newline
+  Gewinne ich nicht im Lotto, ist die getroffene Zusage niemals gebrochen worden -- egal, ob ich die Reise antrete oder nicht.
+  \item Mathematische Beispiele: Die Sätze
+  \begin{align*}
+    &\text{\glqq Wenn } 2 + 2 = 42\text{, dann ist } 2 + 2 = 0\text{\grqq} \\
+    \text{und}\quad &\text{\glqq Wenn } 2 + 2 = 42\text{, dann ist die Erde eine Scheibe\grqq}
+  \end{align*}
+  sind formal beide \textbf{wahre} Aussagen, da die Prämisse $2 + 2 = 42$ falsch ist!
+\end{itemize}
+\end{bemerkung}
+
+\subsection{Klammerkonventionen \& Hierarchie der Junktoren}
+
+Um Formeln übersichtlich zu halten, gilt in Analogie zu \glqq Punkt vor Strich\grqq\ folgende Bindungsreihenfolge:
+\begin{enumerate}
+  \item $\neg$ (bindet am stärksten)
+  \item $\land$
+  \item $\lor$
+  \item $\Rightarrow$, $\Leftrightarrow$ (binden am schwächsten)
+\end{enumerate}
+
+\begin{beispiel}
+Der Ausdruck $\neg A \lor B$ bedeutet stets $(\neg A) \lor B$. Möchte man die Negation der Disjunktion bilden, sind Klammern zwingend erforderlich: $\neg(A \lor B)$.
+\end{beispiel}
+
+\subsection{Logische Äquivalenz}
+
+\begin{definition}[Logische Äquivalenz $\equiv$]
+Zwei zusammengesetzte Aussagen $A$ und $B$ heißen \textbf{logisch äquivalent} (in Zeichen $A \equiv B$), wenn sie bei jeder möglichen Wahrheitswertbelegung der in ihnen vorkommenden Elementaraussagen denselben Wahrheitswert besitzen.
+\end{definition}
+
+\begin{satz}[Auflösung der Implikation]
+Für beliebige Aussagen $A$ und $B$ gilt:
+\[
+  (A \Rightarrow B) \equiv (\neg A \lor B)
+\]
+\end{satz}
+
+\begin{proof}
+Wir vergleichen die Spalten beider Ausdrücke in einer gemeinsamen Wahrheitstafel:
+\begin{center}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{ccccc}
+    \toprule
+    $A$ & $B$ & $\neg A$ & $A \Rightarrow B$ & $\neg A \lor B$ \\
+    \midrule
+    0 & 0 & 1 & \textbf{1} & \textbf{1} \\
+    0 & 1 & 1 & \textbf{1} & \textbf{1} \\
+    1 & 0 & 0 & \textbf{0} & \textbf{0} \\
+    1 & 1 & 0 & \textbf{1} & \textbf{1} \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+Die Spalten für $A \Rightarrow B$ und $\neg A \lor B$ stimmen zeilenweise überein, was die logische Äquivalenz beweist.
+\end{proof}
+
+\begin{bemerkung}[Metasprache vs.\ Objektsprache]
+Streng genommen ist $\Leftrightarrow$ ein \emph{objektsprachlicher Operator} (der aus zwei Aussagen eine neue Aussage erzeugt), während $\equiv$ ein \emph{metasprachliches Symbol} ist, das eine Beziehung über gegebene Aussagen formuliert. In der mathematischen Praxis wird jedoch meist durchgängig $\Leftrightarrow$ geschrieben, wobei die Bedeutung aus dem Kontext hervorgeht.
+\end{bemerkung}
+
+---
+
+\section{Tautologien \& Schlussregeln}
+\label{sec:tautologien}
+
+\begin{definition}[Tautologie und Widerspruch]
+Eine zusammengesetzte Aussage heißt \textbf{Tautologie} (allgemeingültig), wenn sie unabhängig von den Wahrheitswerten ihrer Teilaussagen stets den Wahrheitswert \glqq wahr\grqq\ ($1$) besitzt.\newline
+Sie heißt \textbf{Widerspruch} (Kontradiktion, Symbol $\bot$), wenn sie stets den Wahrheitswert \glqq falsch\grqq\ ($0$) besitzt.
+\end{definition}
+
+Es gilt somit: $A \equiv B$ genau dann, wenn $A \Leftrightarrow B$ eine Tautologie ist.
+
+\begin{satz}[De Morgansche Regeln für die Aussagenlogik]
+Für beliebige Aussagen $A$ und $B$ gelten:
+\begin{align}
+  \neg(A \land B) &\Longleftrightarrow (\neg A \lor \neg B) \label{eq:demorgan1} \\
+  \neg(A \lor B) &\Longleftrightarrow (\neg A \land \neg B) \label{eq:demorgan2}
+\end{align}
+\end{satz}
+
+\begin{proof}
+Wir beweisen Regel \eqref{eq:demorgan1} mittels Wahrheitstafel:
+\begin{center}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{cccccccc}
+    \toprule
+    $A$ & $B$ & $\neg A$ & $\neg B$ & $A \land B$ & $\neg(A \land B)$ & $\neg A \lor \neg B$ & $\neg(A \land B) \Leftrightarrow (\neg A \lor \neg B)$ \\
+    \midrule
+    0 & 0 & 1 & 1 & 0 & 1 & 1 & \textbf{1} \\
+    0 & 1 & 1 & 0 & 0 & 1 & 1 & \textbf{1} \\
+    1 & 0 & 0 & 1 & 0 & 1 & 1 & \textbf{1} \\
+    1 & 1 & 0 & 0 & 1 & 0 & 0 & \textbf{1} \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+Da die letzte Spalte ausschließlich Einsen aufweist, handelt es sich um eine Tautologie. Die zweite Regel folgt analog.
+\end{proof}
+
+\begin{satz}[Wichtige Schlussregeln der Mathematik]
+Es gelten die folgenden fundamentalen Tautologien und Schlussregeln:
+\begin{enumerate}[leftmargin=1.8em, itemsep=4pt]
+  \item \textbf{Doppelte Negation:} $A \Longleftrightarrow \neg(\neg A)$
+  \item \textbf{Modus Ponens:} $(A \land (A \Rightarrow B)) \Longrightarrow B$
+  \item \textbf{Kettenschluss (Syllogismus / Transitivität):} $((A \Rightarrow B) \land (B \Rightarrow C)) \Longrightarrow (A \Rightarrow C)$
+  \item \textbf{Kontraposition (Indirekter Beweis 1):} $(A \Rightarrow B) \Longleftrightarrow (\neg B \Rightarrow \neg A)$
+  \item \textbf{Beweis durch Widerspruch (Indirekter Beweis 2):} $A \Longleftrightarrow (\neg A \Rightarrow \bot)$
+  \item \textbf{Äquivalenzbeweis:} $(A \Leftrightarrow B) \Longleftrightarrow ((A \Rightarrow B) \land (B \Rightarrow A))$
+  \item \textbf{Distributivgesetze:}
+  \begin{align*}
+    A \land (B \lor C) &\Longleftrightarrow (A \land B) \lor (A \land C) \\
+    A \lor (B \land C) &\Longleftrightarrow (A \lor B) \land (A \lor C)
+  \end{align*}
+\end{enumerate}
+\end{satz}
+
+\begin{proof}[Beweis der Kontraposition ohne Wahrheitstafel]
+Unter Verwendung bereits bekannter Äquivalenzen gilt die Kette:
+\[
+  (A \Rightarrow B) \;\Longleftrightarrow\; (\neg A \lor B) \;\Longleftrightarrow\; (B \lor \neg A) \;\Longleftrightarrow\; (\neg(\neg B) \lor \neg A) \;\Longleftrightarrow\; (\neg B \Rightarrow \neg A).
+\]
+Hierbei wurde genutzt: Definition der Implikation als Disjunktion, Kommutativität des $\lor$ sowie die doppelte Negation.
+\end{proof}
+
+\subsection{Klassische Anwendung: Irrationalität von \texorpdfstring{$\sqrt{2}$}{sqrt(2)}}
+
+Als Paradebeispiel für einen mathematischen Widerspruchsbeweis (unter Verwendung der Regel $A \Leftrightarrow (\neg A \Rightarrow \bot)$) dient der antike Satz der Pythagoreer:
+
+\begin{satz}[Irrationalität von $\sqrt{2}$]
+Die Zahl $\sqrt{2}$ ist irrational, d.\,h.\ $\sqrt{2} \notin \Q$.
+\end{satz}
+
+\begin{proof}
+Wir führen einen indirekten Beweis (Beweis durch Widerspruch):
+Angenommen, die Aussage $A$ sei falsch, also gelte $\neg A$: $\sqrt{2}$ ist rational.
+
+Dann existieren natürliche Zahlen $p, q \in \N_{>0}$ mit:
+\[
+  \sqrt{2} = \frac{p}{q}.
+\]
+Ohne Einschränkung (o.\,B.\,d.\,A.) nehmen wir an, dass der Bruch vollständig gekürzt ist, d.\,h.\ $p$ und $q$ sind \textbf{teilerfremd} ($\operatorname{ggT}(p, q) = 1$).
+
+Quadrieren liefert:
+\[
+  2 = \frac{p^2}{q^2} \implies 2q^2 = p^2.
+\]
+Da $2q^2$ durch $2$ teilbar ist, muss auch $p^2$ gerade sein. Da das Quadrat einer ungeraden Zahl stets ungerade ist ($(2k+1)^2 = 4k^2+4k+1 = 2(2k^2+2k)+1$), folgt hieraus zwingend, dass bereits \textbf{$p$ gerade} sein muss.
+
+Es existiert also ein $r \in \N$ mit $p = 2r$. Setzen wir dies in die Gleichung ein:
+\[
+  2q^2 = p^2 = (2r)^2 = 4r^2 \implies q^2 = 2r^2.
+\]
+Mit demselben Argument folgt nun, dass auch $q^2$ und folglich \textbf{$q$ gerade} ist.
+
+Da sowohl $p$ als auch $q$ gerade sind, besitzen sie den gemeinsamen Teiler $2$. Dies steht im direkten Widerspruch zu unserer Voraussetzung, dass $p$ und $q$ teilerfremd gewählt wurden.
+
+Die Annahme $\neg A$ führt somit zum Widerspruch $\bot$. Folglich ist $\sqrt{2}$ irrational.
+\end{proof}
+
+---
+
+\section{Aussageformen und Quantoren}
+\label{sec:quantoren}
+
+\begin{definition}[Aussageform]
+Eine \textbf{einstellige Aussageform} mit Einsetzungsklasse $\Omega$ ist ein sprachlicher, grammatikalisch korrekter Ausdruck $H(\cdot)$ mit einer Leerstelle, sodass für jedes $x \in \Omega$ die Einsetzung $H(x)$ eine Aussage (mit eindeutigem Wahrheitswert) ist.
+\end{definition}
+
+\begin{beispiel}
+\begin{enumerate}[leftmargin=1.5em]
+  \item Sei $\Omega = \R$ und $H(x) :\Longleftrightarrow x \in \Q$. Dann ist $H(42)$ und $H(-3/4)$ wahr, während $H(\sqrt{2})$ nach unserem vorherigen Satz falsch ist.
+  \item Sei $\Omega = \R$ und $H(x) :\Longleftrightarrow x^2 \ge 0$. Hier ist $H(x)$ für jedes reelle $x$ wahr.
+  \item Sei $\Omega = \N$ und $H(n) :\Longleftrightarrow 2n + 4 \text{ ist die Summe zweier Primzahlen}$. Hier ist $H(0)$, $H(1)$, $H(2)$ wahr ($4 = 2+2$, $6 = 3+3$, $8 = 5+3$). Ob dies für alle $n$ gilt, ist als \emph{Goldbachsche Vermutung} bis heute ungelöst!
+\end{enumerate}
+\end{beispiel}
+
+\subsection{All- und Existenzquantor}
+
+\begin{definition}[Quantoren]
+Ist $H(\cdot)$ eine Aussageform über $\Omega$, so bilden wir neue Aussagen:
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Allquantor ($\forall$):}\\
+  $\forall x \in \Omega : H(x)$ \quad (\glqq Für alle $x \in \Omega$ gilt $H(x)$\grqq)
+  \item \textbf{Existenzquantor ($\exists$):}\\
+  $\exists x \in \Omega : H(x)$ \quad (\glqq Es existiert mindestens ein $x \in \Omega$, sodass $H(x)$ gilt\grqq)
+  \item \textbf{Eindeutige Existenz ($\exists!$):}\\
+  $\exists! x \in \Omega : H(x)$ \quad (\glqq Es existiert genau ein $x \in \Omega$, sodass $H(x)$ gilt\grqq)
+\end{itemize}
+\end{definition}
+
+\begin{satz}[Negation von quantifizierten Aussagen]
+Die Negation eines Allquantors liefert einen Existenzquantor und umgekehrt:
+\begin{align*}
+  \neg(\forall x \in \Omega : H(x)) &\Longleftrightarrow \exists x \in \Omega : \neg H(x) \\
+  \neg(\exists x \in \Omega : H(x)) &\Longleftrightarrow \forall x \in \Omega : \neg H(x)
+\end{align*}
+\end{satz}
+
+\begin{bemerkung}[Quantoren über Teilmengen / Unterklassen]
+Ist $\Omega' \subset \Omega$ eine Teilklasse, so verhalten sich All- und Existenzquantor unterschiedlich bzgl.\ der logischen Bindeglieder:
+\begin{align*}
+  (\exists x \in \Omega' : H(x)) &\Longleftrightarrow \exists x \in \Omega : (x \in \Omega' \land H(x)) \\
+  (\forall x \in \Omega' : H(x)) &\Longleftrightarrow \forall x \in \Omega : (x \in \Omega' \Longrightarrow H(x))
+\end{align*}
+\textbf{Achtung:} Bei der Allaussage steht eine Implikation! Ein Satz wie \glqq Alle runden Dreiecke sind blau\grqq\ ist im mathematischen Sinne formal \textbf{wahr}, da es keine runden Dreiecke gibt (die Prämisse $x \in \Omega'$ ist stets falsch, wodurch die Implikation nach dem Prinzip \emph{Ex falso quodlibet} wahr wird).
+\end{bemerkung}
+
+\subsection{Mehrstellige Aussageformen \& Reihenfolge der Quantoren}
+
+Eine $n$-stellige Aussageform $H(x_1, \dots, x_n)$ benötigt $n$ Quantoren, um zu einer Aussage zu werden.
+
+\begin{satz}[Vertauschung von Quantoren]
+Werden Quantoren gleichen Typs hintereinander ausgeführt, darf die Reihenfolge vertauscht werden:
+\[
+  \forall x \forall y : H(x, y) \Longleftrightarrow \forall y \forall x : H(x, y) \quad \text{und} \quad \exists x \exists y : H(x, y) \Longleftrightarrow \exists y \exists x : H(x, y).
+\]
+Treffen jedoch \textbf{unterschiedliche Quantoren} aufeinander, ist die Reihenfolge im Allgemeinen \textbf{nicht vertauschbar}!
+\end{satz}
+
+\begin{beispiel}[Einfluss der Quantorenreihenfolge]
+Sei $\Omega$ die Menge aller verheirateten Personen und $H(x, y) :\Longleftrightarrow x \text{ ist mit } y \text{ verheiratet}$.
+\begin{itemize}
+  \item $\forall x \in \Omega \; \exists y \in \Omega : H(x, y)$:\newline
+  \glqq Zu jedem Verheirateten gibt es einen Ehepartner.\grqq\ $\longrightarrow$ \textbf{Wahr}.
+  \item $\exists y \in \Omega \; \forall x \in \Omega : H(x, y)$:\newline
+  \glqq Es gibt eine universelle Person $y$, die mit allen Personen verheiratet ist.\grqq\ $\longrightarrow$ \textbf{Falsch}.
+\end{itemize}
+\end{beispiel}

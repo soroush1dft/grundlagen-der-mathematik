@@ -1,0 +1,184 @@
+% ==============================================================================
+% Kapitel 2: Mengenlehre
+% ==============================================================================
+
+\chapter{Mengenlehre}
+\label{chap:mengenlehre}
+
+\vorlesungsdatum{26. Oktober 2026}{26102026.pdf}
+
+Die Mengenlehre ist die universelle Sprache der modernen Mathematik. Nahezu alle mathematischen Objekte -- von Zahlen und Funktionen über geometrische Räume bis hin zu algebraischen Strukturen -- werden mengentheoretisch modelliert. In diesem Kapitel führen wir den Cantorschen Mengenbegriff ein und untersuchen fundamentale Operationen auf Mengen.
+
+---
+
+\section{Der Cantorsche Mengenbegriff}
+\label{sec:cantorsche_mengen}
+
+\begin{definition}[Cantorscher Mengenbegriff (1872)]
+\textbf{Georg Cantor} (1845--1918) formulierte den intuitiven Mengenbegriff wie folgt:
+\begin{quote}
+  \glqq Eine \textbf{Menge} ist eine Zusammenfassung von bestimmten, wohlunterschiedenen Objekten unserer Anschauung oder unseres Denkens (welche die \textbf{Elemente} der Menge genannt werden) zu einem Ganzen.\grqq
+\end{quote}
+\end{definition}
+
+\begin{bemerkung}[Historische Bedeutung \& Naive Mengenlehre]
+Cantors Definition revolutionierte die Mathematik des 19.~Jahrhunderts, da sie erstmals die Existenz von \textbf{tatsächlich unendlichen Gesamtheiten} (aktualer Unendlichkeit) postulierte. Zuvor wurde das Unendliche lediglich als unabgeschlossener Grenzprozess (potentielle Unendlichkeit) akzeptiert.\newline
+Obwohl diese Definition intuitiv sehr eingängig ist, ist sie nicht im modernen Sinne axiomatisch exakt (es bleibt unklar, was genau ein \glqq Objekt\grqq\ sein darf). Wie später im Studium gezeigt wird, führt ein unreflektierter Umgang mit diesem naiven Mengenbegriff zu Antinomien (z.\,B.\ der Russellschen Antinomie der \glqq Menge aller Mengen, die sich nicht selbst als Element enthalten\grqq).
+\end{bemerkung}
+
+\subsection{Beschreibung und Notation von Mengen}
+
+Mengen können auf zwei grundlegende Arten angegeben werden:
+
+\begin{enumerate}[leftmargin=1.8em]
+  \item \textbf{Aufzählende Form (explizite Auflistung):}\\
+  Die Elemente werden in geschweiften Klammern aufgeführt:
+  \[
+    M := \{1, 2, 3\} \quad \text{oder} \quad M := \{\text{Hund}, \text{Katze}\}.
+  \]
+  \item \textbf{Beschreibende Form (charakterisierende Eigenschaft):}\\
+  Elemente werden durch eine logische Bedingung $H(x)$ spezifiziert:
+  \[
+    M := \{x \in \Omega \mid H(x)\}.
+  \]
+  Beispielsweise: $M := \{n \in \N \mid 2 \le n \le 5000\}$.
+\end{enumerate}
+
+\begin{bemerkung}[Vorsicht bei Auslassungspunkten]
+Die Schreibweise $M := \{2, 3, 4, \dots, 5000\}$ setzt ein klares Vorwissen über die Bildungsregel der ausgelassenen Elemente voraus. Eine Festlegung wie $\{1, 3, \dots, 10, 17, 35\}$ ist mathematisch unbrauchbar, da das Bildungsgesetz völlig unbestimmt ist.
+\end{bemerkung}
+
+\begin{beispiel}[Standardmengen der Mathematik]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{Leere Menge ($\emptyset$):} Die Menge, die kein einziges Element enthält.
+  \item \textbf{Natürliche Zahlen ($\N$):} $\N := \{0, 1, 2, 3, \dots\}$ (im Rahmen dieser Vorlesung inklusive der $0$).
+  \item \textbf{Ganze Zahlen ($\Z$):} $\Z := \{\dots, -2, -1, 0, 1, 2, \dots\}$.
+  \item \textbf{Rationale Zahlen ($\Q$):} $\Q := \left\{ \frac{p}{q} \;\middle|\; p \in \Z,\, q \in \N_{>0} \right\}$.
+  \item \textbf{Reelle Zahlen ($\R$):} Die Menge aller reellen Zahlen (Dezimalbrüche).
+  \item \textbf{Quadratzahlen:} $\{x \in \N \mid \exists y \in \N : y^2 = x\} = \{0, 1, 4, 9, 16, 25, \dots\}$.
+  \item \textbf{Abgeschlossenes Intervall:} Für $a, b \in \R$ mit $a < b$ sei $[a, b] := \{x \in \R \mid a \le x \le b\}$.
+\end{itemize}
+\end{beispiel}
+
+\subsection{Element- und Teilmengenrelation}
+
+Für ein Objekt $x$ und eine Menge $M$ schreiben wir:
+\begin{itemize}
+  \item $x \in M$:\enspace \glqq $x$ ist Element der Menge $M$\grqq
+  \item $x \notin M$:\enspace \glqq $x$ ist kein Element der Menge $M$\grqq\ ($\neg(x \in M)$)
+\end{itemize}
+Es gilt nach dem Prinzip der Zweiwertigkeit stets entweder $x \in M$ oder $x \notin M$, niemals beides.
+
+\begin{definition}[Teilmenge und Mengengleichheit]
+Seien $M$ und $N$ Mengen.
+\begin{enumerate}[leftmargin=1.8em, itemsep=4pt]
+  \item $M$ heißt \textbf{Teilmenge} von $N$ (in Zeichen $M \subset N$), falls
+  \[
+    \forall x \in M : x \in N.
+  \]
+  \item $M$ und $N$ heißen \textbf{gleich} (in Zeichen $M = N$), wenn
+  \[
+    M \subset N \quad \text{und} \quad N \subset M.
+  \]
+\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}[Notationskonvention zu $\subset$ und $\subseteq$]
+In diesem Skript bedeutet das Symbol $M \subset N$, dass $M$ eine Teilmenge von $N$ ist (einschließlich des Falls $M = N$). Manche Autoren verwenden hierfür das Symbol $\subseteq$ und reservieren $\subset$ für \emph{echte Teilmengen}. Möchten wir explizit betonen, dass $M$ eine echte Teilmenge von $N$ ist ($M \subset N$ und $M \ne N$), schreiben wir $M \subsetneq N$.
+\end{bemerkung}
+
+\begin{bemerkung}[Wohlunterschiedenheit \& Reihenfolge]
+Aus der Definition der Mengengleichheit folgt unmittelbar:
+\[
+  \{1, 2, 1\} = \{1, 2\} = \{2, 1\}.
+\]
+Die Mehrfachnennung von Elementen und deren Anordnung in der Mengenklammer sind bedeutungslos. Dies steht in scharfem Kontrast zu geordneten Paaren (Tupeln): Im euklidischen Raum $\R^2$ gilt $(1, 2) \ne (2, 1)$.
+\end{bemerkung}
+
+\begin{satz}[Zusammenhang Element und einelementige Teilmenge]
+Sei $M$ eine Menge und $x$ ein Objekt. Dann gilt:
+\[
+  x \in M \Longleftrightarrow \{x\} \subset M.
+\]
+\end{satz}
+
+\begin{proof}
+Wir beweisen beide Implikationsrichtungen:
+\begin{itemize}[leftmargin=1.5em]
+  \item[$\Longrightarrow$:] Sei $x \in M$. Zu zeigen ist $\{x\} \subset M$, d.\,h.\ jedes Element von $\{x\}$ liegt in $M$. Die einelementige Menge $\{x\}$ enthält jedoch ausschließlich das Element $x$, und dieses liegt nach Voraussetzung in $M$.
+  \item[$\Longleftarrow$:] Sei $\{x\} \subset M$. Nach Definition der Teilmengenrelation ist jedes Element aus $\{x\}$ auch Element von $M$. Da $x \in \{x\}$, folgt unmittelbar $x \in M$.
+\end{itemize}
+\end{proof}
+
+---
+
+\section{Mengenoperationen}
+\label{sec:mengenoperationen}
+
+Aus bestehenden Mengen lassen sich durch Verknüpfungen neue Mengen konstruieren:
+
+\begin{definition}[Grundlegende Mengenoperationen]
+Seien $M$ und $N$ Mengen.
+\begin{enumerate}[leftmargin=1.8em, itemsep=6pt]
+  \item \textbf{Vereinigung ($M \cup N$):}\\
+  $x \in M \cup N \Longleftrightarrow (x \in M \lor x \in N)$.
+  \item \textbf{Schnittmenge ($M \cap N$):}\\
+  $x \in M \cap N \Longleftrightarrow (x \in M \land x \in N)$.
+  \item \textbf{Komplement / Mengendifferenz ($N \setminus M$, sprich: \glqq $N$ ohne $M$\grqq):}\\
+  $x \in N \setminus M \Longleftrightarrow (x \in N \land x \notin M)$.
+  \item \textbf{Potenzmenge ($\Pot(M)$):}\\
+  Die Menge aller Teilmengen von $M$:
+  \[
+    A \in \Pot(M) \Longleftrightarrow A \subset M.
+  \]
+\end{enumerate}
+\end{definition}
+
+\begin{beispiel}[Potenzmengen]
+\begin{enumerate}[leftmargin=1.5em]
+  \item Für $M = \{1, 2\}$ ist $\Pot(M) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}$.
+  \item Für die leere Menge gilt stets:
+  \[
+    \Pot(\emptyset) = \{\emptyset\} \ne \emptyset.
+  \]
+  Die Potenzmenge der leeren Menge enthält genau ein Element, nämlich die leere Menge selbst.
+  \item Iterierte Potenzmenge:
+  \[
+    \Pot(\Pot(\emptyset)) = \Pot(\{\emptyset\}) = \{\emptyset, \{\emptyset\}\}.
+  \]
+\end{enumerate}
+\end{beispiel}
+
+\begin{satz}[Rechenregeln für Mengenoperationen]
+Für beliebige Mengen $M, N, R$ gelten:
+\begin{enumerate}[leftmargin=1.8em, itemsep=4pt]
+  \item \textbf{Kommutativität:} $M \cup N = N \cup M$ \quad und \quad $M \cap N = N \cap M$
+  \item \textbf{Distributivgesetze:}
+  \begin{align*}
+    M \cap (N \cup R) &= (M \cap N) \cup (M \cap R) \\
+    M \cup (N \cap R) &= (M \cup N) \cap (M \cup R)
+  \end{align*}
+  \item \textbf{De Morgansche Regeln für Mengen:}
+  \begin{align*}
+    M \setminus (N \cup R) &= (M \setminus N) \cap (M \setminus R) \\
+    M \setminus (N \cap R) &= (M \setminus N) \cup (M \setminus R)
+  \end{align*}
+\end{enumerate}
+\end{satz}
+
+\begin{proof}[Beweis des ersten Distributivgesetzes]
+Um die Gleichheit $M \cap (N \cup R) = (M \cap N) \cup (M \cap R)$ zu beweisen, zeigen wir die Äquivalenz der Elementaussagen für ein beliebiges Objekt $x$:
+\begin{align*}
+  x \in M \cap (N \cup R)
+  &\overset{\text{Def.\ } \cap}{\Longleftrightarrow} x \in M \land x \in (N \cup R) \\
+  &\overset{\text{Def.\ } \cup}{\Longleftrightarrow} x \in M \land (x \in N \lor x \in R) \\
+  &\overset{(*)}{\Longleftrightarrow} (x \in M \land x \in N) \lor (x \in M \land x \in R) \\
+  &\overset{\text{Def.\ } \cap}{\Longleftrightarrow} x \in (M \cap N) \lor x \in (M \cap R) \\
+  &\overset{\text{Def.\ } \cup}{\Longleftrightarrow} x \in (M \cap N) \cup (M \cap R).
+\end{align*}
+\textbf{Entscheidender Schritt $(*)$:} In diesem Schritt wird das logische Distributivgesetz für Aussagen aus Kapitel~\ref{chap:logik} verwendet:
+\[
+  A \land (B \lor C) \Longleftrightarrow (A \land B) \lor (A \land C),
+\]
+wobei $A :\equiv x \in M$, $B :\equiv x \in N$ und $C :\equiv x \in R$ gesetzt werden. Dies illustriert mustergültig, wie mengen algebraische Gesetze direkt auf die Gesetze der Aussagenlogik zurückgeführt werden.
+\end{proof}

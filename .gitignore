@@ -1,0 +1,31 @@
+# LaTeX auxiliary and generated files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+
+# Scratch & Temporary Analysis Scripts
+scratch/
+professor_skript_dump.txt
+ocr_notes_dump.txt
+
+# OS Generated
+Thumbs.db
+[Dd]esktop.ini
+.DS_Store
+
+# Editor specific
+.vscode/
+.idea/
