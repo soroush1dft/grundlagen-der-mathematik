@@ -1,87 +1,37 @@
-% ==============================================================================
-% Hauptdokument: Grundlagen der Mathematik I (WS 2026/2027)
-% Philipps-Universität Marburg
-% Dozent: Prof. Dr. Oliver Goertsches
-% Mitschrift & Ausarbeitung: Soroush Daftarian
-% ==============================================================================
+% ==========================================================================
+% Vorlesungsmitschrift: Grundlagen der Mathematik I
+% Mathematisches Institut – Wintersemester 2026/2027
+% ==========================================================================
+%!TEX program = lualatex
+\documentclass[11pt, a4paper]{article}
 
-\documentclass[11pt, a4paper, titlepage]{report}
-
-% Lade zentrale Konfiguration, Pakete und Definitionen
+% Zentrale Konfiguration und Pakete laden
 \input{config/preamble.tex}
 
 \begin{document}
 
-% --- Titelseite ---
-\hypersetup{pageanchor=false}
-\begin{titlepage}
-  \newgeometry{margin=2.5cm, top=3cm, bottom=2.5cm}
-  \pagecolor{boxbg}
-  \raggedright
+% --------------------------------------------------------------------------
+% Titelkopf
+% --------------------------------------------------------------------------
+\begin{center}
+    {\LARGE\textbf{\textcolor{primary}{Vorlesungsmitschrift: Grundlagen der Mathematik I}}}\\[0.4em]
+    {\large fb12 -- Wintersemester 2026/2027}\\[0.2em]
+    \rule{\textwidth}{0.8pt}
+\end{center}
 
-  \vspace*{1.5cm}
+\vspace{-0.5em}
 
-  % Institution / Fachbereich
-  {\color{secondary}\large\sffamily\bfseries PHILIPPS-UNIVERSITÄT MARBURG}\\[0.2cm]
-  {\color{secondary}\normalsize\sffamily Fachbereich 12: Mathematik und Informatik}
+% --------------------------------------------------------------------------
+% Inhaltsverzeichnis (optional ein-/ausblendbar)
+% --------------------------------------------------------------------------
+% \tableofcontents
+% \vspace{1.5em}
+% \hrule
+% \vspace{1.5em}
 
-  \vspace{2.5cm}
-
-  % Dekorative Linie
-  {\color{primary}\rule{\linewidth}{3pt}}\\[0.6cm]
-
-  % Haupttitel
-  {\color{primary}\fontsize{32pt}{38pt}\selectfont\bfseries\sffamily Grundlagen der\\[0.2cm] Mathematik I}\\[0.8cm]
-
-  % Untertitel
-  {\color{secondary}\Large\sffamily Modulare Vorlesungsmitschriften \& Begleitskript}\\[0.3cm]
-  {\color{secondary}\large\sffamily Wintersemester 2026/2027}
-
-  \vspace{1.0cm}
-  {\color{primary}\rule{0.3\linewidth}{1pt}}
-
-  \vfill
-
-  % Metadaten-Block
-  \begin{minipage}[t]{0.55\textwidth}
-    \textbf{\color{primary}\sffamily Dozent:}\\[0.1cm]
-    {\sffamily Prof.~Dr.~Oliver Goertsches}\\[0.1cm]
-    {\small\color{secondary}\sffamily Institut für Mathematik}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.40\textwidth}
-    \textbf{\color{primary}\sffamily Mitschrift \& Satz:}\\[0.1cm]
-    {\sffamily Soroush Daftarian}\\[0.1cm]
-    {\small\color{secondary}\sffamily Stand: \today}
-  \end{minipage}
-
-  \vspace{1.5cm}
-
-  % Fußzeilen-Badge
-  \begin{tcolorbox}[
-    enhanced,
-    colback=white,
-    colframe=bordercol,
-    boxrule=0.6pt,
-    arc=4pt,
-    left=10pt, right=10pt, top=6pt, bottom=6pt
-  ]
-    \small\sffamily
-    \textcolor{primary}{\faGithub}\enspace\textbf{GitHub Repository:} \href{https://github.com/soroush1dft/grundlagen-der-mathematik}{github.com/soroush1dft/grundlagen-der-mathematik}
-  \end{tcolorbox}
-
-  \restoregeometry
-  \nopagecolor
-\end{titlepage}
-\hypersetup{pageanchor=true}
-
-% --- Inhaltsverzeichnis ---
-\pagenumbering{roman}
-\tableofcontents
-\newpage
-\pagenumbering{arabic}
-
-% --- Kapitel ---
+% --------------------------------------------------------------------------
+% Kapitel einbinden
+% --------------------------------------------------------------------------
 \input{chapters/00_organisatorisches.tex}
 \input{chapters/01_logik.tex}
 \input{chapters/02_mengenlehre.tex}
