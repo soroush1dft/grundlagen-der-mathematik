@@ -152,3 +152,354 @@ Im Schritt $(*)$ wurde das logische Distributivgesetz für Aussagen aus Kapitel 
 \vspace{0.8em}
 \hrule
 \vspace{1em}
+
+% ==========================================================================
+% Vorlesung vom 03.11.2026: Paradoxien, Axiomatik, Gödel & Relationen
+% ==========================================================================
+\vorlesungsdatum{03.11.2026}{handschrift/03112026.pdf}
+
+% --------------------------------------------------------------------------
+% Die Russellsche Antinomie
+% --------------------------------------------------------------------------
+\subsection{Grenzen der naiven Mengenlehre: Die Russellsche Antinomie}
+
+Mengen können selbst wieder Elemente anderer Mengen sein. So gilt beispielsweise:
+\[
+\{\{0\}\} \ne \{0\},
+\]
+da $\{\{0\}\}$ als einziges Element die einelementige Menge $\{0\}$ besitzt, während $\{0\}$ die Zahl $0$ enthält. Entsprechend ist
+\[
+\{\{0\}, 0, \{\{0\}, 0\}\}
+\]
+eine Menge mit genau drei Elementen. Für alle gängigen mathematischen Mengen $M$ gilt dabei zwar $M \subset M$, aber niemals $M \in M$ (so ist etwa für $M = \{0\}$ offenbar $\{0\} \notin \{0\}$).
+
+Betrachtet man jedoch die uneingeschränkte Bildung von Mengen nach Cantors naiver Definition, so müsste auch die Zusammenfassung aller denkbaren Mengen existieren:
+\[
+M := \{X \mid X \text{ ist eine Menge}\} \quad \text{(\glqq Allmenge\grqq)}.
+\]
+Da $M$ selbst eine Menge ist, würde hierfür $M \in M$ gelten. Zwar erscheint eine Menge, die sich selbst enthält, kontraintuitiv, führt aber für sich genommen noch nicht unmittelbar zu einem logischen Widerspruch. Die Katastrophe für die naive Mengenlehre entsteht jedoch, wenn man die folgende Teilgesamtheit betrachtet:
+
+\begin{definition}[Russellsche Menge]
+Sei $R$ die Gesamtheit aller Mengen, die sich nicht selbst als Element enthalten:
+\[
+R := \{M \text{ Menge} \mid M \notin M\}.
+\]
+\end{definition}
+
+\begin{satz}[Russellsche Antinomie, 1903]
+Die Annahme, dass $R$ eine Menge im mathematischen Sinne ist, führt zu einem unauflösbaren Widerspruch.
+\end{satz}
+
+\begin{proof}
+Angenommen, $R$ wäre eine Menge. Nach dem Prinzip des ausgeschlossenen Dritten muss entweder $R \in R$ oder $R \notin R$ gelten:
+\begin{itemize}
+    \item \textbf{1. Fall ($R \in R$):} Ist $R \in R$, so erfüllt $R$ per Definition die Eigenschaft seiner Elemente, nämlich sich selbst nicht zu enthalten. Es folgt also $R \notin R$, ein Widerspruch zur Annahme.
+    \item \textbf{2. Fall ($R \notin R$):} Ist $R \notin R$, so erfüllt $R$ exakt die definierende Bedingung für die Zugehörigkeit zu $R$. Folglich muss $R \in R$ sein, was erneut der Annahme widerspricht.
+\end{itemize}
+Es gilt somit:
+\[
+(R \in R) \;\Longleftrightarrow\; (R \notin R) \quad (\bot).
+\]
+Da eine Aussage nicht zugleich wahr und falsch sein kann, ist die Existenz der Menge $R$ unhaltbar.
+\end{proof}
+
+\begin{bemerkung}[Umgangssprachliche Veranschaulichungen]
+Die Struktur dieses Widerspruchs beruht auf Selbstreferenz und Negation. Bertrand Russell formulierte 1918 das populäre \textbf{Barbier-Paradoxon}:
+\begin{quote}
+    \glqq Man definiere einen Dorfbarbier als denjenigen Mann im Dorf, der genau diejenigen Männer rasiert, die sich nicht selbst rasieren. Rasiert sich der Barbier selbst?\grqq
+\end{quote}
+Rasiert er sich selbst, gehört er zu jenen, die er nicht rasieren darf; rasiert er sich nicht selbst, muss er sich als Barbier rasieren.
+
+Ein noch älterer antiker Vorläufer ist das \textbf{Lügner-Paradoxon} (zugeschrieben dem Kreter Epimenides, 6.~Jh.\ v.\,Chr.):
+\begin{quote}
+    \glqq Der Kreter Epimenides sagt: ,Alle Kreter lügen`.\grqq
+\end{quote}
+\end{bemerkung}
+
+\begin{bemerkung}[Cantorsche Antinomie]
+Auch Georg Cantor selbst war die Problematik uneingeschränkter Mengenbildungen bewusst. Aus dem Satz von Cantor folgt, dass die Potenzmenge $\Pot(M)$ stets eine echt größere Mächtigkeit besitzt als $M$. Wendet man dies auf die angenommene Allmenge aller Mengen an, müsste $\Pot(M)$ einerseits mächtiger sein als $M$, andererseits aber als Teilmenge von $M$ nicht mehr Elemente enthalten können. Cantor veröffentlichte dies nicht als Aufsatz, sondern diskutierte es ab 1899 in Briefen (u.\,a.\ an Richard Dedekind).
+\end{bemerkung}
+
+% --------------------------------------------------------------------------
+% Wege aus der Grundlagenkrise & Axiomatik
+% --------------------------------------------------------------------------
+\subsection{Wege aus der Grundlagenkrise \& Axiomatischer Aufbau (ZFC)}
+
+Die Entdeckung der Antinomien stürzte die Mathematik um 1900 in eine tiefe \textbf{Grundlagenkrise}. Wie lassen sich derartige Widersprüche formal ausschließen, ohne die mathematische Arbeitsfähigkeit zu zerstören?
+
+\subsubsection*{Historische Lösungsansätze}
+\begin{enumerate}
+    \item \textbf{Russells Typentheorie (1908):}
+    Einführung einer strikten Stufenhierarchie:
+    \begin{itemize}
+        \item \emph{Mengen 1.~Stufe:} Enthalten nur Objekte (Individuen / Urelemente), die selbst keine Mengen sind.
+        \item \emph{Mengen 2.~Stufe:} Enthalten nur Mengen 1.~Stufe.
+        \item \emph{Mengen $(n+1)$-ter Stufe:} Enthalten nur Mengen $n$-ter Stufe.
+    \end{itemize}
+    Ein Ausdruck wie $x \in y$ ist syntaktisch nur wohlgeformt, wenn die Stufe von $x$ kleiner ist als die Stufe von $y$. Ausdrücke wie $M \in M$ oder die Bildung von $R$ sind syntaktisch verboten.\newline
+    \emph{Vorteil:} Widersprüche werden vermieden.\newline
+    \emph{Nachteil:} Der mathematische Aufbau wird extrem kompliziert und in der Praxis unhandlich.
+    
+    \item \textbf{Konstruktivismus / Intuitionismus (Brouwer, Kronecker):}
+    Man lässt nur Mengen zu, die endlich sind oder sich in endlich vielen Schritten explizit konstruieren lassen. Reine Existenzbeweise via Widerspruch und das Prinzip vom ausgeschlossenen Dritten werden abgelehnt.\newline
+    \emph{Nachteil:} Sehr restriktiv; fundamentale Säulen der Analysis (wie die Menge aller reellen Zahlen $\R$ als aktual unendliche Gesamtheit) müssten aufgegeben werden.
+    
+    \item \textbf{Axiomatischer Aufbau (Axiomatik):}
+    Das Wort \emph{Axiom} stammt vom griechischen \emph{axíōma} (\glqq Geltung\grqq, \glqq Würde\grqq, \glqq unbezweifelbare Forderung\grqq).
+    In der Mathematik ist ein Beweis eine Kette logischer Schlüsse aus bereits bewiesenen Sätzen. Verfolgt man diese Kette zurück, muss sie an einem Fundament enden, da man aus dem Nichts nichts folgern kann. Man einigt sich daher auf wenige, unbewiesene Grundannahmen (Axiome), deren Gültigkeit als Fundament vorausgesetzt wird.
+\end{enumerate}
+
+\subsubsection*{Das Zermelo-Fraenkel-Axiomensystem (ZF / ZFC)}
+Der heute allgemein anerkannte Standard ist das von Ernst Zermelo (1908) begründete und von Abraham Fraenkel (1922) präzisierte Axiomensystem \textbf{ZF} (bzw.\ \textbf{ZFC}, wenn das Auswahlaxiom hinzugenommen wird), welches aus ca.\ 10 Kernaxiomen besteht.
+
+Bei der Wahl der Axiome sucht man einen Mittelweg:
+\begin{itemize}
+    \item \textbf{Nicht zu wenige Axiome:} Die Theorie muss reichhaltig genug sein, um alle mathematischen Gegenstände (Zahlen, Funktionen, Räume) konstruieren zu können.
+    \item \textbf{Nicht zu viele Axiome:} Das System soll übersichtlich bleiben, Axiome sollen voneinander unabhängig sein und das Risiko unentdeckter Widersprüche soll minimiert werden.
+\end{itemize}
+
+\begin{definition}[Wichtige Axiome des ZF-Systems]
+Das ZF-System beinhaltet unter anderem folgende Grundsätze:
+\begin{enumerate}
+    \item \textbf{Existenzaxiom:} Es existiert eine leere Menge $\emptyset$, d.\,h.\ eine Menge, die kein Element enthält.
+    \item \textbf{Extensionalitätsaxiom:} Zwei Mengen sind genau dann gleich, wenn sie dieselben Elemente besitzen:
+    \[
+    M = N \;\Longleftrightarrow\; \forall x : (x \in M \Leftrightarrow x \in N).
+    \]
+    Hieraus folgt unmittelbar: Es gibt \textbf{genau eine} leere Menge.
+    \item \textbf{Aussonderungsaxiom (Schema):} Ist $M$ bereits als Menge gesichert und $P(\cdot)$ eine mathematische Eigenschaft (Aussageform), dann ist auch die ausgesonderte Gesamtheit
+    \[
+    \{x \in M \mid P(x)\}
+    \]
+    wieder eine Menge.
+    \item \textbf{Vereinigungsaxiom:} Zu Mengen $M$ und $N$ ist ihre Vereinigung $M \cup N$ eine Menge.
+    \item \textbf{Potenzmengenaxiom:} Zu jeder Menge $M$ ist die Potenzmenge $\Pot(M)$ eine Menge.
+    \item \textbf{Unendlichkeitsaxiom:} Es existiert eine unendliche Menge (dies sichert die Existenz der natürlichen Zahlen $\N$).
+    \item \textbf{Auswahlaxiom (\textit{Axiom of Choice}, AC):} Zu jeder Familie nicht-leerer, paarweise disjunkter Mengen existiert eine Menge, die aus jeder dieser Mengen genau ein Element enthält. (Nimmt eine Sonderstellung ein; ZF + AC wird als ZFC bezeichnet).
+\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}[Auflösung der Russellschen Antinomie: Mengen vs.\ Klassen]
+In ZF ist die \glqq Menge aller Mengen\grqq\ keine Menge mehr! Man unterscheidet:
+\begin{itemize}
+    \item \textbf{Klasse:} Jede beliebige Zusammenfassung von mathematischen Objekten.
+    \item \textbf{Menge:} Eine Klasse, die selbst Element einer anderen Klasse sein kann.
+    \item \textbf{Echte Klasse:} Eine Zusammenfassung, die \glqq zu groß\grqq\ ist, um Menge zu sein (z.\,B.\ die Allklasse aller Mengen oder die Russellsche Klasse).
+\end{itemize}
+Jede Menge ist eine Klasse, aber nicht jede Klasse ist eine Menge.
+
+Beim Aussonderungsaxiom darf man nur aus einer \emph{bereits existierenden Menge} $M$ Elemente auswählen. Bildet man dort $R_M := \{x \in M \mid x \notin x\}$, so folgt widerspruchsfrei lediglich $R_M \notin M$. Insbesondere folgt aus dem Aussonderungsaxiom, dass der Schnitt zweier Mengen $M, N$ stets eine Menge ist:
+\[
+M \cap N = \{x \in M \cup N \mid x \in M \land x \in N\}.
+\]
+\end{bemerkung}
+
+% --------------------------------------------------------------------------
+% Gödelsche Unvollständigkeitssätze
+% --------------------------------------------------------------------------
+\subsection{Die Gödelschen Unvollständigkeitssätze}
+
+Kann man mathematisch beweisen, dass das ZFC-Axiomensystem frei von Widersprüchen ist?
+
+\begin{satz}[Gödelsche Unvollständigkeitssätze, Kurt Gödel 1931]
+Für jedes formale mathematische System, welches hinreichend mächtig ist (d.\,h.\ mindestens die elementare Arithmetik der natürlichen Zahlen umfasst), gilt:
+\begin{enumerate}
+    \item \textbf{Erster Unvollständigkeitssatz:} Ist das System widerspruchsfrei, so ist es \textbf{unvollständig}. Das bedeutet: Es existieren mathematische Aussagen, die wahr sind, sich aber innerhalb des Systems weder formal beweisen noch widerlegen lassen.
+    \item \textbf{Zweiter Unvollständigkeitssatz:} Ein solches widerspruchsfreies System kann seine eigene Widerspruchsfreiheit mit den eigenen formalen Mitteln \textbf{nicht beweisen}.
+\end{enumerate}
+\end{satz}
+
+\begin{bemerkung}[Anschauliche Deutung \& Selbstreferenz]
+Man stelle sich vor, man wolle ein Buch verfassen, welches sich selbst bis ins letzte Detail vollständig beschreibt.
+Man beginnt mit der Farbe des Einbandes, der Papierstärke, Seite 1, Seite 2 usw. Irgendwann gelangt man zu Seite $x$, auf welcher exakt stehen müsste, was auf Seite $x$ steht. Ein solches Buch kann niemals vollständig fertiggestellt werden, ohne in endlose Zirkelschlüsse oder Widersprüche zu geraten.
+
+Für die moderne Mathematik bedeutet dies: Wir können niemals mit absoluter Gewissheit ausschließen, dass eines Tages ein verborgener Widerspruch in ZFC entdeckt wird. Dennoch bildet der axiomatische Aufbau das stabilste und tragfähigste Fundament, das wir besitzen; die Techniken und Ideen des logischen Schließens bleiben von dieser prinzipiellen Grenze unberührt.
+\end{bemerkung}
+
+% --------------------------------------------------------------------------
+% Relationen und Ordnungen
+% --------------------------------------------------------------------------
+\subsection{Relationen und Ordnungen}
+
+Um Beziehungen zwischen mathematischen Objekten präzise zu beschreiben, führen wir den formalen Begriff der Relation ein.
+
+\begin{definition}[Kartesisches Produkt \& Geordnetes Paar]
+Seien $X$ und $Y$ Mengen.
+\begin{enumerate}
+    \item Das \textbf{kartesische Produkt} $X \times Y$ ist die Menge aller \textbf{geordneten Paare} $(x, y)$ mit $x \in X$ und $y \in Y$:
+    \[
+    X \times Y := \{(x, y) \mid x \in X, \, y \in Y\}.
+    \]
+    \item Ein geordnetes Paar erfüllt die charakterisierende Eigenschaft:
+    \[
+    (x, y) = (x', y') \;\Longleftrightarrow\; (x = x' \;\land\; y = y').
+    \]
+\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}[Abgrenzung zur Menge und Kuratowski-Paar]
+Bei Mengen ist die Reihenfolge irrelevant: $\{x, y\} = \{y, x\}$. Beim geordneten Paar hingegen ist die Reihenfolge wesentlich: $(x, y) \ne (y, x)$ (sofern $x \ne y$).
+Mengentheoretisch lässt sich das geordnete Paar nach \textbf{Kazimierz Kuratowski} (1921) formal definieren als:
+\[
+(x, y) := \{\{x\}, \{x, y\}\} \;\in\; \Pot(\Pot(X \cup Y)).
+\]
+Aus dieser Definition lässt sich die obige Gleichheitseigenschaft rein aus den Axiomen herleiten.
+\end{bemerkung}
+
+\begin{definition}[Relation]
+Seien $X$ und $Y$ Mengen.
+\begin{enumerate}
+    \item Eine \textbf{Relation} zwischen $X$ und $Y$ ist eine Teilmenge $R \subset X \times Y$.
+    \item Gilt $(x, y) \in R$, so sagt man: \glqq $x$ steht in der Relation $R$ zu $y$\grqq\ (Infix-Schreibweise: $x \, R \, y$).
+    \item Ist $X = Y$, so heißt eine Teilmenge $R \subset X \times X$ eine \textbf{Relation auf $X$}.
+\end{enumerate}
+\end{definition}
+
+\subsubsection*{Totalordnungen}
+
+\begin{definition}[Totalordnung / Lineare Ordnung]
+Eine Relation $R$ auf einer Menge $X$ heißt \textbf{Totalordnung} (oder lineare Ordnung), wenn sie folgende vier Eigenschaften erfüllt:
+\begin{enumerate}
+    \item \textbf{Reflexivität:} $\forall x \in X : x \, R \, x$.
+    \item \textbf{Transitivität:} $\forall x, y, z \in X : (x \, R \, y \land y \, R \, z \Longrightarrow x \, R \, z)$.
+    \item \textbf{Antisymmetrie:} $\forall x, y \in X : (x \, R \, y \land y \, R \, x \Longrightarrow x = y)$.
+    \item \textbf{Totalität (Vergleichbarkeit):} $\forall x, y \in X : (x \, R \, y \lor y \, R \, x)$.
+\end{enumerate}
+\end{definition}
+
+\begin{beispiel}[Ordnungsrelationen]
+\begin{itemize}
+    \item Die Standard-Relation $\le$ auf den Zahlenbereichen $\N, \Z, \Q, \R$ ist jeweils eine Totalordnung.
+    \item Die strikte Relation $<$ auf $\N, \Z, \Q, \R$ ist \textbf{keine} Totalordnung: Sie ist weder reflexiv ($x < x$ ist falsch) noch total ($x < y \lor y < x$ scheitert bei $x = y$).
+    \item \textbf{Teilmengenrelation $\subset$ auf $\Pot(X)$:}
+    \begin{itemize}
+        \item $\subset$ ist \textbf{reflexiv}: Für jedes $Y \subset X$ gilt $Y \subset Y$.
+        \item $\subset$ ist \textbf{transitiv}: Seien $A, B, C \subset X$ mit $A \subset B$ und $B \subset C$. Zu zeigen ist $\forall x \in A : x \in C$. Sei $x \in A$. Da $A \subset B$, folgt $x \in B$. Da $B \subset C$, folgt $x \in C$. Also gilt $A \subset C$.
+        \item $\subset$ ist \textbf{antisymmetrisch}: Gilt $A \subset B$ und $B \subset A$, so folgt $A = B$ nach der Definition der Mengengleichheit.
+        \item $\subset$ ist jedoch im Allgemeinen \textbf{nicht total}:
+        Enthält $X$ mindestens zwei verschiedene Elemente, etwa $X = \{1, 2\}$, so betrachte $A = \{1\}$ und $B = \{2\}$. Es gilt weder $A \subset B$ noch $B \subset A$. Die Teilmengenbeziehung ist daher lediglich eine \textbf{Halbordnung} (partielle Ordnung), keine Totalordnung.
+    \end{itemize}
+    \item Die echte Teilmengenrelation $\subsetneq$ auf $\Pot(X)$ ist nicht reflexiv ($A \not\subsetneq A$).
+\end{itemize}
+\end{beispiel}
+
+% --------------------------------------------------------------------------
+% Aequivalenzrelationen und Quotientenmengen
+% --------------------------------------------------------------------------
+\subsection{Äquivalenzrelationen und Quotientenmengen}
+
+Während Ordnungsrelationen eine Hierarchie ausdrücken, dienen \textbf{Äquivalenzrelationen} dazu, Objekte zu identifizieren, die sich bezüglich eines bestimmten Merkmals nicht unterscheiden.
+
+\begin{definition}[Äquivalenzrelation]
+Eine Relation $R$ auf einer Menge $X$ (häufig mit $\sim$ bezeichnet) heißt \textbf{Äquivalenzrelation}, wenn sie folgende drei Eigenschaften besitzt:
+\begin{enumerate}
+    \item \textbf{Reflexivität:} $\forall x \in X : x \sim x$.
+    \item \textbf{Symmetrie:} $\forall x, y \in X : (x \sim y \Longrightarrow y \sim x)$.
+    \item \textbf{Transitivität:} $\forall x, y, z \in X : (x \sim y \land y \sim z \Longrightarrow x \sim z)$.
+\end{enumerate}
+\end{definition}
+
+\begin{beispiel}[Äquivalenzrelationen]
+\begin{enumerate}
+    \item \textbf{Identität:} Die Gleichheitsrelation $=$ auf einer beliebigen Menge $X$ ist stets eine Äquivalenzrelation.
+    \item \textbf{Parallelität von Geraden:} Sei $X$ die Menge aller Geraden im zweidimensionalen Raum $\R^2$. Wir definieren:
+    \[
+    g \sim h \;\Longleftrightarrow\; g \parallel h \quad \text{($g$ und $h$ sind parallel)}.
+    \]
+    Dies ist eine Äquivalenzrelation, denn jede Gerade ist zu sich selbst parallel, Parallelität ist symmetrisch und zwei Geraden, die zu einer dritten parallel sind, sind auch untereinander parallel.
+\end{enumerate}
+\end{beispiel}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    \draw[->, thick, secondary] (-3, 0) -- (4, 0) node[right] {\small $x$};
+    \draw[->, thick, secondary] (0, -2) -- (0, 3) node[above] {\small $y$};
+    \draw[line width=1.2pt, primary] (-2.5, -1.5) -- (3, 2.5) node[right] {$g$};
+    \draw[line width=1.2pt, primary] (-2.5, -0.5) -- (2.5, 3.1) node[right] {$h$};
+    \draw[line width=1.2pt, primary] (-2.5, -2.5) -- (3.5, 1.9) node[right] {$l$};
+    \node[anchor=north west, fill=boxbg, draw=bordercol, rounded corners=2pt, font=\small] at (-2.8, 2.7) {Parallele Geraden: $g \sim h \sim l$};
+\end{tikzpicture}
+\end{center}
+
+\begin{definition}[Äquivalenzklasse]
+Sei $\sim$ eine Äquivalenzrelation auf $X$ und $x \in X$.
+Die \textbf{Äquivalenzklasse} von $x$ bezüglich $\sim$ ist die Menge aller zu $x$ äquivalenten Elemente:
+\[
+[x] := \{y \in X \mid y \sim x\} \;\subset\; X.
+\]
+Jedes Element $y \in [x]$ heißt ein \textbf{Repräsentant} der Klasse $[x]$.
+\end{definition}
+
+\begin{lemma}[Klassengleichheit und Disjunktheit]
+Sei $\sim$ eine Äquivalenzrelation auf $X$ und seien $x, y \in X$. Dann gilt:
+\[
+[x] = [y] \quad \xor \quad [x] \cap [y] = \emptyset.
+\]
+Zwei Äquivalenzklassen sind also entweder identisch oder vollständig disjunkt.
+\end{lemma}
+
+\begin{proof}
+Wegen der Reflexivität gilt $x \sim x$, folglich $x \in [x]$. Ebenso gilt $y \in [y]$. Keine Äquivalenzklasse ist somit leer. Daher können $[x] = [y]$ und $[x] \cap [y] = \emptyset$ niemals gleichzeitig eintreffen.
+
+Es genügt zu zeigen: Ist $[x] \cap [y] \ne \emptyset$, so folgt zwingend $[x] = [y]$.
+\begin{itemize}
+    \item Sei also $[x] \cap [y] \ne \emptyset$. Dann existiert ein gemeinsames Element $z \in [x] \cap [y]$.
+    \item Das bedeutet $z \sim x$ und $z \sim y$. Aus $z \sim x$ folgt wegen der Symmetrie unmittelbar $x \sim z$.
+    \item Wir weisen nun die Inklusion $[x] \subset [y]$ nach:
+    Sei $w \in [x]$ beliebig. Dann gilt $w \sim x$.
+    \begin{align*}
+        w \sim x \;\land\; x \sim z &\overset{\text{Transitivität}}{\Longrightarrow} w \sim z, \\
+        w \sim z \;\land\; z \sim y &\overset{\text{Transitivität}}{\Longrightarrow} w \sim y.
+    \end{align*}
+    Folglich gilt $w \in [y]$, was $[x] \subset [y]$ beweist.
+    \item Völlig symmetrisch (durch Vertauschung der Rollen von $x$ und $y$) folgt $[y] \subset [x]$.
+\end{itemize}
+Zusammen ergibt sich $[x] = [y]$.
+\end{proof}
+
+\begin{bemerkung}[Anschauliche Interpretation: Partitionen]
+Das obige Lemma besagt, dass jede Äquivalenzrelation die Grundmenge $X$ in disjunkte Teilmengen zerlegt (eine sogenannte \textbf{Partition}).
+Als Veranschaulichung dient die Aufteilung Deutschlands in Bundesländer: Jeder Ort liegt in genau einem Bundesland; betrachtet man zwei beliebige Orte, so haben sie entweder exakt dasselbe Bundesland als Äquivalenzklasse oder ihre Bundesländer sind paarweise disjunkt.
+\end{bemerkung}
+
+\begin{definition}[Quotientenmenge]
+Sei $\sim$ eine Äquivalenzrelation auf einer Menge $X$. Die Menge aller Äquivalenzklassen heißt die \textbf{Quotientenmenge} (oder Faktormenge) von $X$ nach $\sim$:
+\[
+X / \sim \;:=\; \{[x] \mid x \in X\} \;\subset\; \Pot(X).
+\]
+\end{definition}
+
+\begin{beispiel}[Restklassen mod 2 auf $\Z$]
+Auf den ganzen Zahlen $\Z$ definieren wir:
+\[
+x \sim y \;\Longleftrightarrow\; x - y \text{ ist gerade} \quad (\text{d.\,h.\ } \exists k \in \Z : x - y = 2k).
+\]
+Dies ist eine Äquivalenzrelation:
+\begin{enumerate}
+    \item \textbf{Reflexiv:} Für alle $x \in \Z$ ist $x - x = 0 = 2 \cdot 0$ gerade $\implies x \sim x$.
+    \item \textbf{Transitiv:} Sind $x \sim y$ und $y \sim z$, so sind $x - y$ und $y - z$ gerade. Dann ist auch
+    \[
+    x - z = (x - y) + (y - z)
+    \]
+    als Summe gerader Zahlen gerade $\implies x \sim z$.
+    \item \textbf{Symmetrisch:} Ist $x \sim y$, also $x - y$ gerade, dann ist auch $y - x = -(x - y)$ gerade $\implies y \sim x$.
+\end{enumerate}
+Es gibt genau zwei Äquivalenzklassen:
+\begin{align*}
+    [0] &= \{x \in \Z \mid x - 0 \text{ ist gerade}\} = \{\dots, -4, -2, 0, 2, 4, \dots\} \quad \text{(gerade Zahlen)}, \\
+    [1] &= \{x \in \Z \mid x - 1 \text{ ist gerade}\} = \{\dots, -3, -1, 1, 3, 5, \dots\} \quad \text{(ungerade Zahlen)}.
+\end{align*}
+Offensichtlich gilt:
+\[
+\Z = [0] \cup [1] \quad \text{mit} \quad [0] \cap [1] = \emptyset.
+\]
+Die Quotientenmenge besteht aus genau zwei Elementen:
+\[
+\Z / \sim \;=\; \{[0], [1]\} \quad \text{(auch bezeichnet als } \Z_2 = \{\bar{0}, \bar{1}\} \text{ bzw.\ } \Z / 2\Z\text{)}.
+\]
+\end{beispiel}
+
+\vspace{0.8em}
+\hrule
+\vspace{1em}
+

@@ -16,6 +16,8 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
 
 % Farbpalette
 \definecolor{primary}{RGB}{20, 50, 110}
@@ -60,6 +62,6 @@
 % Vorlesungs-Marker: Datum und zugehörige handschriftliche Quelle
 \newcommand{\vorlesungsdatum}[2]{%
     \vspace{0.6em}%
-    \noindent\textcolor{secondary}{\small\textbf{Vorlesung vom #1} \hfill \textit{Handschrift: \texttt{#2}}}\par%
+    \noindent\textcolor{secondary}{\small\textbf{Vorlesung vom #1} \hfill \textit{Handschrift: \texttt{\detokenize{#2}}}}\par%
     \vspace{0.4em}%
 }

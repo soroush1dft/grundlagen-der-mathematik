@@ -26,6 +26,9 @@
 | **VL 1** | **26.10.2026** | **Kapitel 1: Logik**<br>Aussagenbegriff, Extensionalitätsprinzip, Wahrheitstafeln, logische Junktoren | [`01_logik.tex`](chapters/01_logik.tex) | [`26102026.pdf`](handschrift/26102026.pdf) |
 | **VL 1** | **26.10.2026** | **Tautologien \& Schlussregeln**<br>De Morgan, Modus Ponens, Kontraposition, Beweis $\sqrt{2}\notin\mathbb{Q}$, Quantoren | [`01_logik.tex`](chapters/01_logik.tex) | [`26102026.pdf`](handschrift/26102026.pdf) |
 | **VL 1** | **26.10.2026** | **Kapitel 2: Mengenlehre**<br>Cantorscher Mengenbegriff, Teilmengen, Potenzmenge, Mengengesetze | [`02_mengenlehre.tex`](chapters/02_mengenlehre.tex) | [`26102026.pdf`](handschrift/26102026.pdf) |
+| **VL 2** | **03.11.2026** | **Russellsche Antinomie & Axiomatik**<br>Allmenge, Russell-Menge, Typentheorie, ZFC-Axiomensystem, Mengen vs. Klassen | [`02_mengenlehre.tex`](chapters/02_mengenlehre.tex) | [`03112026.pdf`](handschrift/03112026.pdf) |
+| **VL 2** | **03.11.2026** | **Gödelsche Unvollständigkeitssätze**<br>1. & 2. Unvollständigkeitssatz, Selbstreferenz, Grenzen formaler Beweisbarkeit | [`02_mengenlehre.tex`](chapters/02_mengenlehre.tex) | [`03112026.pdf`](handschrift/03112026.pdf) |
+| **VL 2** | **03.11.2026** | **Relationen, Ordnungen & Quotientenmengen**<br>Kartesisches Produkt, Totalordnungen, Äquivalenzrelationen, Zerlegungen, $\mathbb{Z}_2$ | [`02_mengenlehre.tex`](chapters/02_mengenlehre.tex) | [`03112026.pdf`](handschrift/03112026.pdf) |
 
 ---
 
@@ -38,6 +41,7 @@ grundlagen-der-mathematik/
 ├── .gitignore                      # Filtert alle TeX-Zwischendateien (*.aux, *.log, *.out, etc.)
 ├── README.md                       # Dokumentation, Vorlesungsübersicht & Workflow
 ├── compile.bat                     # 1-Klick-Buildskript für Windows (LuaLaTeX)
+├── compile.sh                      # Buildskript für Linux / macOS (LuaLaTeX)
 ├── main.tex                        # Zentraler Master-File (bindet Präambel & Kapitel ein)
 ├── main.pdf                        # Zuletzt kompiliertes Dokument (vollständige Mitschrift)
 │

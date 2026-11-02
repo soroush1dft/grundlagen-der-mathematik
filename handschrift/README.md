@@ -10,6 +10,7 @@ Dieser Ordner dient als zentraler Ablageort für alle eingescannten bzw. digital
 | :--- | :--- | :--- | :--- | :---: | :--- |
 | **Vorlesungsbeginn** | `Skript_GdM.pdf` | Prof. Dr. Oliver Goertsches | Offizielles Begleitskript (Kapitel 1: Logik, Kapitel 2: Mengenlehre) | ✅ Integriert | `01_logik.tex`, `02_mengenlehre.tex` |
 | **26.10.2026** | `26102026.pdf` | Eigene Mitschrift | 1. Vorlesung: Organisatorisches, Aussagen, Wahrheitstafeln, Tautologien, Beweis $\sqrt{2}\notin\mathbb{Q}$, Quantoren, Cantorsche Mengenlehre | ✅ Integriert | `00_organisatorisches.tex`, `01_logik.tex`, `02_mengenlehre.tex` |
+| **03.11.2026** | `03112026.pdf` (`20261103_compressed.pdf`) | Eigene Mitschrift | 2. Vorlesung: Russellsche Antinomie, Typentheorie, ZFC-Axiomensystem, Klassen vs. Mengen, Gödelsche Unvollständigkeitssätze, Relationen, Totalordnungen, Äquivalenzrelationen, Quotientenmengen $\mathbb{Z}_2$ | ✅ Integriert | `02_mengenlehre.tex` |
 
 ---
 
