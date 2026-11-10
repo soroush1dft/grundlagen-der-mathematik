@@ -1,0 +1,166 @@
+% Fortsetzung von Kapitel 2. Quelle: kumulative Mitschrift, PDF-S. 34--45.
+\subsection{Relationen}
+\notizquelle{34--45; S.~42 ist leer}
+
+\subsubsection*{Geordnete Paare und kartesisches Produkt}
+\begin{definition}[Kartesisches Produkt]
+Für Mengen $X,Y$ heißt
+\[
+    X\times Y:=\{(x,y)\mid x\in X,\ y\in Y\}
+\]
+das \textbf{kartesische Produkt}. Ein geordnetes Paar erfüllt
+\[
+    (x,y)=(x',y')\quad\Longleftrightarrow\quad x=x'\land y=y'.
+\]
+Anders als bei $\{x,y\}$ kommt es also auf die Reihenfolge an.
+\end{definition}
+
+\begin{bemerkung}[Paare als Mengen]
+Eine mögliche mengentheoretische Definition ist
+$(x,y):=\{\{x\},\{x,y\}\}$.
+Für $x\in X$, $y\in Y$ liegt dieses Paar in
+$\Pot(\Pot(X\cup Y))$. Daher lässt sich $X\times Y$ durch Aussonderung
+aus einer vorhandenen Menge gewinnen.
+\end{bemerkung}
+
+\begin{definition}[Relation]
+Eine \textbf{Relation zwischen $X$ und $Y$} ist eine Teilmenge
+$R\subset X\times Y$. Für $(x,y)\in R$ schreiben wir auch $xRy$.
+Ist $X=Y$, heißt $R$ eine \textbf{Relation auf $X$}.
+\end{definition}
+
+\subsubsection*{Ordnungsrelationen}
+\begin{definition}[Eigenschaften einer Relation]
+Eine Relation $R$ auf $X$ heißt
+\begin{enumerate}
+    \item \textbf{reflexiv}, falls $\forall x\in X:\ xRx$;
+    \item \textbf{transitiv}, falls
+    $\forall x,y,z\in X:\ (xRy\land yRz)\Rightarrow xRz$;
+    \item \textbf{antisymmetrisch}, falls
+    $\forall x,y\in X:\ (xRy\land yRx)\Rightarrow x=y$;
+    \item \textbf{total}, falls
+    $\forall x,y\in X:\ xRy\lor yRx$;
+    \item \textbf{symmetrisch}, falls
+    $\forall x,y\in X:\ xRy\Rightarrow yRx$.
+\end{enumerate}
+Eine reflexive, transitive und antisymmetrische Relation heißt
+\textbf{Halbordnung}; ist sie zusätzlich total, heißt sie
+\textbf{Totalordnung}.
+\end{definition}
+
+\begin{beispiel}[Ordnungen und Gegenbeispiele]
+\begin{itemize}
+    \item $\le$ auf $\N,\Z,\Q,\R$ ist jeweils eine Totalordnung.
+    \item $<$ ist transitiv und antisymmetrisch, aber nicht reflexiv.
+    In der obigen Definition ist es auch nicht total: Für $x=y$ gilt
+    weder $x<y$ noch $y<x$. Es ist eine \emph{strikte} Ordnung.
+    \item Auf $\Pot(X)$ ist $\subset$ eine Halbordnung, wobei das Symbol
+    wie bisher Gleichheit zulässt. Für zwei verschiedene Elemente
+    $a,b\in X$ sind aber $\{a\}$ und $\{b\}$ nicht vergleichbar.
+    Bei mindestens zwei Elementen in $X$ ist diese Ordnung also nicht total.
+    \item Die echte Teilmengenrelation $\subsetneq$ ist nicht reflexiv.
+\end{itemize}
+\end{beispiel}
+
+\begin{proof}[Nachweis für die Teilmengenrelation]
+Jede Menge $A$ erfüllt $A\subset A$. Aus $A\subset B$ und $B\subset C$
+folgt für jedes $x\in A$ zunächst $x\in B$ und dann $x\in C$, also
+$A\subset C$. Aus $A\subset B$ und $B\subset A$ folgt nach der
+Definition der Mengengleichheit $A=B$.
+\end{proof}
+
+\begin{bemerkung}[Symmetrie und Antisymmetrie]
+Antisymmetrie ist nicht die Negation von Symmetrie. Die Gleichheitsrelation
+ist beispielsweise sowohl symmetrisch als auch antisymmetrisch.
+\end{bemerkung}
+
+\subsubsection*{Äquivalenzrelationen und Äquivalenzklassen}
+\begin{definition}[Äquivalenzrelation]
+Eine reflexive, symmetrische und transitive Relation auf $X$ heißt
+\textbf{Äquivalenzrelation}. Dafür verwenden wir häufig das Symbol $\sim$.
+Für $x\in X$ heißt
+\[
+    [x]:=\{y\in X\mid y\sim x\}
+\]
+die \textbf{Äquivalenzklasse von $x$}. Sie ist eine Teilmenge von $X$.
+\end{definition}
+
+\begin{beispiel}
+Die Gleichheit auf einer beliebigen Menge ist eine Äquivalenzrelation;
+ihre Klassen sind die einelementigen Mengen $\{x\}$.
+Auf der Menge der Geraden in $\R^2$ ist \glqq hat dieselbe Richtung\grqq\
+eine Äquivalenzrelation. Hier zählen identische Geraden als parallel;
+würde man sie ausschließen, fehlte die Reflexivität.
+\end{beispiel}
+
+\begin{lemma}[Klassen sind gleich oder disjunkt]
+Für eine Äquivalenzrelation auf $X$ und $x,y\in X$ gilt
+\[
+    [x]=[y]\quad\text{oder}\quad[x]\cap[y]=\emptyset.
+\]
+Genauer gilt $[x]=[y]\Longleftrightarrow x\sim y$.
+\end{lemma}
+\begin{proof}
+Wegen der Reflexivität gilt $x\in[x]$; keine Klasse ist leer.
+Sei nun $z\in[x]\cap[y]$. Dann gelten $z\sim x$ und $z\sim y$,
+also nach Symmetrie und Transitivität auch $x\sim y$.
+Ist $w\in[x]$, so folgt aus $w\sim x$ und $x\sim y$ auch $w\sim y$,
+also $w\in[y]$. Daher ist $[x]\subset[y]$. Analog gilt die umgekehrte
+Inklusion. Ein nichtleerer Schnitt erzwingt somit Gleichheit.
+Aus $x\sim y$ folgt mit demselben Argument $[x]=[y]$.
+Gilt umgekehrt $[x]=[y]$, dann ist $x\in[y]$, also $x\sim y$.
+\end{proof}
+
+\begin{definition}[Quotientenmenge]
+Die \textbf{Quotientenmenge}
+\[
+    X/{\sim}:=\{[x]\mid x\in X\}\subset\Pot(X)
+\]
+ist die Menge aller Äquivalenzklassen. Ihre Elemente sind selbst Mengen.
+Die Klassen zerlegen $X$ in paarweise disjunkte, nichtleere Teilmengen.
+\end{definition}
+
+\begin{beispiel}[Gerade und ungerade Zahlen]
+Auf $\Z$ sei $a\sim b$ genau dann, wenn $a-b$ gerade ist.
+Reflexivität folgt aus $a-a=0$, Symmetrie aus
+$b-a=-(a-b)$ und Transitivität aus $a-c=(a-b)+(b-c)$.
+Es gibt genau zwei Klassen:
+\[
+    [0]=\{2k\mid k\in\Z\},\qquad
+    [1]=\{2k+1\mid k\in\Z\}.
+\]
+Damit ist $\Z/{\sim}=\{[0],[1]\}$ und $\Z=[0]\cup[1]$.
+\end{beispiel}
+
+\begin{beispiel}[Kongruenz modulo $m$]
+Für eine feste Zahl $m\in\N_{>0}$ definieren wir auf $\Z$
+\[
+    a\sim_m b\quad\Longleftrightarrow\quad m\mid(a-b).
+\]
+Wegen $m\mid0$, $m\mid d\Rightarrow m\mid(-d)$ und
+$m\mid d,\ m\mid e\Rightarrow m\mid(d+e)$ ist dies eine
+Äquivalenzrelation. Es gilt
+\[
+    [r]=\{r+km\mid k\in\Z\},\qquad
+    \Z/{\sim_m}=\{[0],[1],\ldots,[m-1]\}.
+\]
+Für $m=3$ sind die Klassen beispielsweise
+\begin{align*}
+    [0]&=\{\ldots,-6,-3,0,3,6,\ldots\},\\
+    [1]&=\{\ldots,-5,-2,1,4,7,\ldots\},\\
+    [2]&=\{\ldots,-4,-1,2,5,8,\ldots\}.
+\end{align*}
+Die untere Zeile der Mitschrift auf PDF-S.~45 verwendet außerdem die
+Schreibweise $\Z_m=\{\overline0,\ldots,\overline{m-1}\}$ aus der
+Linearen Algebra. Dabei bezeichnen die Symbole Restklassen, keine
+gewöhnlichen ganzen Zahlen.
+\end{beispiel}
+
+\begin{beispiel}[Planeten-Beispiel von der Tafel]
+Unter der Modellannahme, dass jeder betrachtete Planet genau einen Stern
+umkreist, sei $P\sim Q$ genau dann, wenn beide denselben Stern umkreisen.
+Die Relation ist reflexiv und symmetrisch. Umkreisen $P,Q$ denselben
+Stern $S_1$ und $Q,R$ denselben Stern $S_2$, so folgt aus der Eindeutigkeit
+für $Q$, dass $S_1=S_2$. Daher gilt $P\sim R$.
+Die Klassen sind die Gruppen von Planeten um denselben Stern.
+\end{beispiel}

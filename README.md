@@ -1,25 +1,39 @@
-# Grundlagen der Mathematik I – Vorlesungsmitschrift
+# Grundlagen der Mathematik I - Vorlesungsmitschrift
 
-[![LaTeX](https://img.shields.io/badge/LaTeX-LuaLaTeX-blue.svg)](https://www.lualatex.org/)
-[![Status](https://img.shields.io/badge/Status-In%20Progress%20(WS%202026%2F27)-green.svg)]()
-[![Repository](https://img.shields.io/badge/GitHub-soroush1dft%2Fgrundlagen--der--mathematik-181717.svg?logo=github)](https://github.com/soroush1dft/grundlagen-der-mathematik)
-[![View PDF](https://img.shields.io/badge/PDF-main.pdf-red.svg?logo=adobeacrobatreader)](main.pdf)
+Philipps-Universität Marburg, Prof. Dr. Oliver Goertsches, Wintersemester 2026/27.
 
-> **Mathematisches Institut – Wintersemester 2026/2027**  
-> Vorlesungsmitschrift zu *Grundlagen der Mathematik I* (Prof. Dr. Oliver Goertsches, Philipps-Universität Marburg). Dieses Repository kombiniert die **handschriftlichen Originalmitschriften** aus den Vorlesungen mit einem modular aufgebauten, professionell gesetzten **LaTeX-Skript**.
+Dieses Repository verbindet eigene Vorlesungsnotizen mit einem modularen
+LaTeX-Skript. Quelle für die Erweiterung vom 09.11.2026 ist die kumulative
+Mitschrift mit 54 PDF-Seiten. Das vorhandene Dozentenskript endet bereits
+bei den grundlegenden Mengenoperationen; es deckt die späteren Themen nicht ab.
 
----
+- [Gesetzte Mitschrift, 16 Seiten](main.pdf)
+- [Kumulative Notizen bis 09.11.2026](handschrift/09112026.PDF)
+- [Prüfprotokoll und fachliche Korrekturen](REVIEW.md)
+- [GitHub](https://github.com/soroush1dft/grundlagen-der-mathematik)
 
-## 📖 Schnellzugriff
+## Inhalt und Quellenabdeckung
 
-* 📄 **Fertige PDF-Mitschrift ansehen:** [**`main.pdf`**](main.pdf) *(wird fortlaufend aktualisiert)*
-* ✍️ **Handschriftliche Original-Scans:** [`handschrift/`](handschrift/)
-* 🧩 **LaTeX-Kapitel:** [`chapters/`](chapters/)
+Die Seitenangaben beziehen sich auf `handschrift/09112026.PDF`.
+Nicht jede Seite enthält ein Datum; der Dateiname ist kein Nachweis für
+einen einzelnen Vorlesungstermin. Die Kapitelstruktur folgt den Themen
+der Vorlesung. Definitionen und Beispiele erhalten eigene laufende Nummern.
 
----
+| Inhalt | Quelle: PDF-Seiten | LaTeX-Datei |
+| --- | --- | --- |
+| Organisatorisches | 1 | `chapters/00_organisatorisches.tex` |
+| Aussagen, Wahrheitstafeln, Tautologien, Beweise, Quantoren | 1--17 | `chapters/01_logik.tex` |
+| Cantorscher Mengenbegriff, Teilmengen, Potenzmengen, Mengengesetze | 18--26 | `chapters/02_mengenlehre.tex` |
+| Russell, Axiomatik, Klassen, Unvollständigkeit | 27--33 | `chapters/02b_grundlagen.tex` |
+| Relationen, Ordnungen, Äquivalenzklassen, Restklassen | 34--45 | `chapters/02c_relationen.tex` |
+| Abbildungen, Komposition, Bilder, Urbilder, Injektivität usw. | 46--54 | `chapters/02d_abbildungen.tex` |
 
-## 📅 Vorlesungsübersicht & Inhalte
+Seite 42 ist leer. Die Tafelbilder auf Seiten 30, 43 und 44 wurden inhaltlich
+berücksichtigt; Fotos werden nicht in das gesetzte Skript übernommen.
+Sprachlich ausgearbeitete Beweise und kurze zusätzliche Beispiele dienen
+der Verständlichkeit. Fachliche Präzisierungen sind im Prüfprotokoll dokumentiert.
 
+<<<<<<< Updated upstream
 | Vorlesung | Datum | Thema / Inhalt | LaTeX-Quelle | Handschrift |
 | :---: | :---: | :--- | :--- | :---: |
 | – | – | Organisatorisches \& Übungsbetrieb | [`00_organisatorisches.tex`](chapters/00_organisatorisches.tex) | – |
@@ -29,11 +43,19 @@
 | **VL 2** | **03.11.2026** | **Russellsche Antinomie & Axiomatik**<br>Allmenge, Russell-Menge, Typentheorie, ZFC-Axiomensystem, Mengen vs. Klassen | [`02_mengenlehre.tex`](chapters/02_mengenlehre.tex) | [`03112026.pdf`](handschrift/03112026.pdf) |
 | **VL 2** | **03.11.2026** | **Gödelsche Unvollständigkeitssätze**<br>1. & 2. Unvollständigkeitssatz, Selbstreferenz, Grenzen formaler Beweisbarkeit | [`02_mengenlehre.tex`](chapters/02_mengenlehre.tex) | [`03112026.pdf`](handschrift/03112026.pdf) |
 | **VL 2** | **03.11.2026** | **Relationen, Ordnungen & Quotientenmengen**<br>Kartesisches Produkt, Totalordnungen, Äquivalenzrelationen, Zerlegungen, $\mathbb{Z}_2$ | [`02_mengenlehre.tex`](chapters/02_mengenlehre.tex) | [`03112026.pdf`](handschrift/03112026.pdf) |
+=======
+## Aufbau und Kompilierung
+>>>>>>> Stashed changes
 
----
+`main.tex` bindet `config/preamble.tex` und die Kapitel ein. Die Präambel
+enthält Noto Sans, deutsche Spracheinstellungen, mathematische Makros und
+Theoremumgebungen. TikZ zeichnet die Funktionsgraphen. Ein Inhaltsverzeichnis
+und PDF-Seitenangaben erleichtern den Abgleich mit den Originalnotizen.
 
-## 📁 Repository-Architektur
+Voraussetzung: MiKTeX oder TeX Live mit LuaLaTeX und der Schrift Noto Sans.
+Unter Windows:
 
+<<<<<<< Updated upstream
 Die Struktur ist bewusst modular aufgeteilt, um eine einfache Erweiterung nach jedem Vorlesungstermin ohne unübersichtliche Riesen-Dateien zu ermöglichen:
 
 ```text
@@ -69,25 +91,29 @@ Voraussetzung ist eine gängige TeX-Distribution (z.\,B. **MiKTeX** oder **TeX L
 
 ### Automatisches Kompilieren (Windows)
 Einfach die Datei [`compile.bat`](compile.bat) per Doppelklick ausführen oder in der Konsole aufrufen:
+=======
+>>>>>>> Stashed changes
 ```cmd
 compile.bat
 ```
-Das Skript führt automatisch zwei Durchläufe aus, um Querverweise und Referenzen sauber aufzulösen.
 
----
+Für einen Aufruf ohne abschließende Pause: `compile.bat nopause`.
+Das Skript führt zwei Durchläufe aus und meldet Fehler aus beiden Durchläufen.
+Hilfsdateien und das lokale Verzeichnis `scratch/` sind von Git ausgeschlossen.
 
-## 🔄 Workflow für neue Vorlesungsmitschriften
+**Buildstand:** Die lokal kompilierte PDF vom 09.11.2026 umfasst 16 Seiten
+und enthält die neuen Abschnitte. Das vorhandene Buildlog bestätigt die
+PDF-Ausgabe; es nennt noch drei übervolle Textzeilen (ca. 0,38, 3,15 und
+9,59 pt). Eine vollständige visuelle Endkontrolle steht noch aus.
+Die Kompilierung erfolgt durch den Nutzer in VS Code.
 
-1. **Handschriftliche Datei ablegen:**
-   PDF-Scan nach der Vorlesung als `DDMMYYYY.pdf` in [`handschrift/`](handschrift/) speichern.
-2. **KI-Assistent aufrufen:**
-   *"Bitte transkribiere die neue Mitschrift `handschrift/DDMMYYYY.pdf`, gleiche sie mit dem Dozentenskript ab und integriere den Inhalt in die modularen Kapitel."*
-3. **Kompilieren:**
-   Ausführen von `compile.bat`, um `main.pdf` zu aktualisieren.
-4. **Git Versionierung:**
-   Änderungen committen und zu GitHub pushen:
-   ```bash
-   git add .
-   git commit -m "Vorlesung DD.MM.YYYY eingepflegt"
-   git push
-   ```
+## Weitere Mitschriften integrieren
+
+1. PDF in `handschrift/` ablegen, üblicherweise als `DDMMYYYY.pdf`.
+2. Prüfen, ob es sich um neue Seiten oder einen kumulativen Export handelt.
+   Bereits integrierten Stoff nicht doppelt übernehmen.
+3. Inhalt lesen, mit dem verfügbaren Dozentenskript abgleichen und passende
+   Kapitel ergänzen. Unleserliche Stellen und Zusatzannahmen kennzeichnen.
+4. Quellenabdeckung und Prüfprotokoll aktualisieren.
+5. Zweimal kompilieren und die PDF-Seiten visuell prüfen.
+6. Änderungen prüfen und bei Bedarf committen und zu GitHub pushen.

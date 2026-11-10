@@ -4,7 +4,7 @@
 
 \section{Kapitel 1: Logik}
 
-\vorlesungsdatum{26.10.2026}{handschrift/26102026.pdf}
+\notizquelle{1--17}
 
 In diesem Kapitel besprechen wir kurz und prägnant die aussagen- und prädikatenlogischen Grundlagen, die nötig sind, um Mathematik formal und widerspruchsfrei zu betreiben. Die Logik dient uns hierbei vor allem als universelle Sprache zur Formulierung von Definitionen, Sätzen und Beweisen.
 
@@ -41,7 +41,7 @@ Ob ein Ausdruck eine Aussage ist, hängt nicht davon ab, ob der Wahrheitswert un
 \begin{itemize}
     \item \glqq $31\,274\,567$ ist eine Primzahl.\grqq\ ist eine Aussage (sie ist objektiv wahr oder falsch, auch wenn die Prüfung Rechenaufwand erfordert).
     \item \glqq Die Erde ist rund.\grqq\ $\rightarrow$ wahre Aussage.
-    \item \glqq Dieser Satz besteht aus sechs Wörtern.\grqq\ $\rightarrow$ wahre Aussage (selbstreferenziell, aber eindeutig entscheidbar).
+    \item Der Satz \glqq Dieser Satz besteht aus sechs Wörtern\grqq\ enthält isoliert tatsächlich sechs Wörter. Beim Einbetten in einen längeren Satz kann sich der Bezug von \glqq dieser Satz\grqq\ jedoch ändern. Selbstreferenz ist nicht automatisch widersprüchlich, verlangt aber einen eindeutig festgelegten Kontext.
 \end{itemize}
 \end{beispiel}
 
@@ -71,7 +71,7 @@ Seien $A$ und $B$ Aussagen. Wir definieren:
     \item \textbf{Disjunktion ($A \lor B$, \glqq $A$ oder $B$\grqq):} Inklusives Oder; wahr, sobald mindestens eine der Aussagen $A$ oder $B$ wahr ist.
     \item \textbf{Antivalenz ($A \xor B$, \glqq Entweder $A$ oder $B$\grqq, XOR):} Genau dann wahr, wenn $A$ und $B$ unterschiedliche Wahrheitswerte haben.
     \item \textbf{Negation ($\neg A$ bzw.\ $\bar{A}$, \glqq Nicht $A$\grqq):} Kehrt den Wahrheitswert der Aussage um.
-    \item \textbf{Implikation ($A \Rightarrow B$, \glqq Wenn $A$, dann $B$\grqq):} Nur dann falsch, wenn $A$ wahr ($1$) und $B$ falsch ($0$) ist. Ist $A$ falsch, ist die Implikation stets wahr (\emph{Ex falso quodlibet}). $A$ heißt hinreichend für $B$; $B$ heißt notwendig für $A$.
+    \item \textbf{Implikation ($A \Rightarrow B$, \glqq Wenn $A$, dann $B$\grqq):} Nur dann falsch, wenn $A$ wahr ($1$) und $B$ falsch ($0$) ist. Ist $A$ falsch, ist die Implikation stets wahr (eine \emph{vakuos wahre Implikation}). $A$ heißt hinreichend für $B$; $B$ heißt notwendig für $A$.
     \item \textbf{Äquivalenz ($A \Leftrightarrow B$, \glqq $A$ genau dann, wenn $B$\grqq):} Wahr, wenn $A$ und $B$ denselben Wahrheitswert besitzen.
 \end{enumerate}
 \end{definition}
@@ -99,21 +99,33 @@ Seien $A$ und $B$ Aussagen. Wir definieren:
 \end{tabular}
 \end{center}
 
-\begin{bemerkung}[Ex falso quodlibet]
+\begin{bemerkung}[Falsche Voraussetzung und Widerspruch]
 Die Belegung von $A \Rightarrow B$ bei falscher Prämisse ($A = 0$) lässt sich an Beispielen motivieren:
 \begin{itemize}
     \item \glqq Wenn ich heute im Lotto gewinne, mache ich eine Weltreise.\grqq\newline
     Gewinne ich nicht, habe ich mein Versprechen nicht gebrochen -- die Aussage bleibt wahr.
     \item Mathematisch: Die Aussagen \glqq Wenn $2+2=42$, dann ist $2+2=0$\grqq\ und \glqq Wenn $2+2=42$, dann ist die Erde eine Scheibe\grqq\ sind formal beide \textbf{wahr}, da die Voraussetzung falsch ist.
 \end{itemize}
+Eine falsche Voraussetzung erlaubt für sich genommen nicht, $B$ zu behaupten.
+Das Prinzip \emph{ex falso quodlibet} besagt vielmehr, dass aus einem
+Widerspruch jede Aussage folgt: $(A\land\neg A)\Rightarrow B$ ist eine Tautologie.
 \end{bemerkung}
 
 \subsection*{Operatorrangfolge}
-Um Klammern zu sparen, gilt folgende Bindungshierarchie:
-\begin{center}
-1.~Negation $\neg$ \quad $>$ \quad 2.~Konjunktion / Disjunktion $\land, \lor$ \quad $>$ \quad 3.~Implikation / Äquivalenz $\Rightarrow, \Leftrightarrow$
-\end{center}
-\emph{Beispiel:} $\neg A \lor B$ bedeutet stets $(\neg A) \lor B$ und nicht $\neg(A \lor B)$.
+In der Konvention der Vorlesung bindet die Negation stärker als
+Konjunktion und Disjunktion; diese binden stärker als Implikation und
+Äquivalenz. Insbesondere bedeutet $\neg A\lor B$ stets $(\neg A)\lor B$.
+Bei gemischten Verknüpfungen derselben Stufe setzen wir Klammern,
+z.\,B. $(A\land B)\lor C$. So wird keine zusätzliche Rangfolge vorausgesetzt.
+
+\begin{bemerkung}[Aussage und metasprachliche Gleichwertigkeit]
+$A\Leftrightarrow B$ ist eine zusammengesetzte Aussage, die bei einer
+bestimmten Belegung wahr oder falsch sein kann. Dagegen besagt
+$A\equiv B$, dass beide Formeln bei \emph{jeder} Belegung denselben
+Wahrheitswert haben. Die Mitschrift unterscheidet dies ausdrücklich
+(PDF-S.~5--7). Bei den folgenden allgemeinen Schlussregeln bezeichnet
+eine hingeschriebene Äquivalenz eine Tautologie.
+\end{bemerkung}
 
 \begin{definition}[Logische Äquivalenz $\equiv$]
 Zwei zusammengesetzte Aussagen $A$ und $B$ heißen \textbf{logisch äquivalent} (in Zeichen $A \equiv B$), wenn sie bei jeder Belegung der Teilkomponenten denselben Wahrheitswert liefern.
@@ -156,6 +168,12 @@ Sie heißt \textbf{Widerspruch} (Symbol $\bot$), wenn sie stets den Wert \glqq f
 
 Es gilt also: $A \equiv B$ genau dann, wenn $A \Leftrightarrow B$ eine Tautologie ist.
 
+\begin{beispiel}[Elementare Tautologien]
+$A\Leftrightarrow A$, $A\lor\neg A$, $\neg(A\land\neg A)$,
+$A\Rightarrow(A\lor B)$ und $(A\land B)\Rightarrow A$ sind
+Tautologien. Dagegen ist $A\land\neg A$ ein Widerspruch.
+\end{beispiel}
+
 \begin{satz}[De Morgansche Regeln]
 Für beliebige Aussagen $A$ und $B$ gelten:
 \begin{align*}
@@ -168,18 +186,18 @@ Für beliebige Aussagen $A$ und $B$ gelten:
 Beweis der ersten Regel exemplarisch mittels Wahrheitstafel:
 \begin{center}
 \renewcommand{\arraystretch}{1.15}
-\begin{tabular}{cccccccc}
+\begin{tabular}{ccccccc}
     \toprule
-    $A$ & $B$ & $\neg A$ & $\neg B$ & $A \land B$ & $\neg(A \land B)$ & $\neg A \lor \neg B$ & $\neg(A \land B) \Leftrightarrow (\neg A \lor \neg B)$ \\
+    $A$ & $B$ & $\neg A$ & $\neg B$ & $A \land B$ & $\neg(A \land B)$ & $\neg A \lor \neg B$ \\
     \midrule
-    0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
-    0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 \\
-    1 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
-    1 & 1 & 0 & 0 & 1 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 1 & 0 & 1 & 1 \\
+    0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+    1 & 0 & 0 & 1 & 0 & 1 & 1 \\
+    1 & 1 & 0 & 0 & 1 & 0 & 0 \\
     \bottomrule
 \end{tabular}
 \end{center}
-Da die letzte Spalte ausschließlich den Wert 1 aufweist, handelt es sich um eine Tautologie.
+Die beiden letzten Spalten stimmen überein. Ihre Äquivalenz hat daher in jeder Zeile den Wert $1$.
 \end{proof}
 
 \begin{satz}[Klassische Schlussregeln]
@@ -201,9 +219,13 @@ Es gelten die folgenden fundamentalen Tautologien:
 
 \begin{proof}[Beweis der Kontraposition ohne Wahrheitstafel]
 Unter wiederholter Anwendung bereits bewiesener Äquivalenzen:
-\[
-(A \Rightarrow B) \;\Longleftrightarrow\; (\neg A \lor B) \;\Longleftrightarrow\; (\neg A \lor \neg\neg B) \;\Longleftrightarrow\; (\neg(\neg B) \lor \neg A) \;\Longleftrightarrow\; (\neg B \Rightarrow \neg A).
-\]
+\begin{align*}
+    (A\Rightarrow B)&\equiv(\neg A\lor B)\\
+    &\equiv(\neg\neg B\lor\neg A)\\
+    &\equiv(\neg B\Rightarrow\neg A).
+\end{align*}
+Dabei benutzen wir die Auflösung der Implikation, doppelte Negation und
+Kommutativität der Disjunktion.
 \end{proof}
 
 \subsection*{Klassische Anwendung: Irrationalität von \texorpdfstring{$\sqrt{2}$}{sqrt(2)}}
@@ -272,6 +294,16 @@ Für eine Unterklasse $\Omega' \subset \Omega$ gilt:
 \emph{Wichtig:} Bei der Allaussage steht eine Implikation. Daher ist ein Satz wie \glqq Alle runden Dreiecke sind blau\grqq\ im mathematischen Sinne formal wahr, da die Prämisse (rundes Dreieck) niemals erfüllt ist.
 \end{bemerkung}
 
+\begin{definition}[Mehrstellige Aussageform]
+Eine $n$-stellige Aussageform $H(x_1,\ldots,x_n)$ mit Einsetzungsklassen
+$\Omega_1,\ldots,\Omega_n$ wird bei jeder Wahl $x_i\in\Omega_i$ zu einer
+Aussage. Beispielsweise ist $H(x,y):\Longleftrightarrow x<y$ auf
+$\R\times\R$ zweistellig. Ebenso ist
+$H(a,b,c,d):\Longleftrightarrow a+b=c+d$ auf $\N^4$ vierstellig.
+Quantoren schreiben wir vor die zugehörige Aussageform und beachten ihren
+Geltungsbereich.
+\end{definition}
+
 \subsection*{Reihenfolge bei mehreren Quantoren}
 Treffen unterschiedliche Quantoren aufeinander, ist die Reihenfolge entscheidend:
 \begin{beispiel}
@@ -284,6 +316,15 @@ H(x, y) :\Longleftrightarrow x \text{ ist mit } y \text{ verheiratet}.
     \item $\exists y \in \Omega \; \forall x \in \Omega : H(x, y)$:\enspace \glqq Es gibt jemanden, der mit allen verheiratet ist\grqq\ $\rightarrow$ \textbf{falsch}.
 \end{itemize}
 \end{beispiel}
+Im Ehepartnerbeispiel wird vorausgesetzt, dass niemand mit sich selbst
+verheiratet ist und dass die betrachtete Menge nicht leer ist.
+Ein rein mathematisches Beispiel vermeidet diese Modellannahmen:
+\[
+\forall x\in\R\;\exists y\in\R:\ x<y
+\qquad\text{ist wahr (wähle $y=x+1$),}
+\]
+während $\exists y\in\R\;\forall x\in\R:\ x<y$ falsch ist
+(setze für ein vorgegebenes $y$ etwa $x=y$).
 
 \vspace{0.8em}
 \hrule

@@ -1,0 +1,140 @@
+% Fortsetzung von Kapitel 2. Quelle: kumulative Mitschrift, PDF-S. 27--33.
+\subsection{Die Russellsche Antinomie}
+\notizquelle{27--28}
+
+Mengen können selbst Elemente anderer Mengen sein. Dabei sind
+Element- und Teilmengenrelation sorgfältig zu unterscheiden:
+$\{0\}\ne\{\{0\}\}$, und
+$\{\{0\},0,\{0,1\}\}$ enthält drei verschiedene Elemente.
+Für jede Menge $M$ gilt $M\subset M$; daraus folgt keineswegs $M\in M$.
+
+\begin{satz}[Russellsche Antinomie]
+Die uneingeschränkte Forderung, zu jeder Eigenschaft eine Menge aller
+Objekte mit dieser Eigenschaft bilden zu dürfen, führt zu einem Widerspruch.
+\end{satz}
+\begin{proof}
+Angenommen, die Zusammenfassung
+\[
+    R:=\{M\mid M\text{ ist eine Menge und }M\notin M\}
+\]
+wäre eine Menge. Die definierende Eigenschaft müsste dann auch für $R$
+selbst gelten, also
+\[
+    R\in R\quad\Longleftrightarrow\quad R\notin R.
+\]
+Ist $R\in R$, so folgt $R\notin R$; ist $R\notin R$, so folgt $R\in R$.
+Beide Fälle widersprechen der Annahme.
+\end{proof}
+
+\begin{beispiel}[Der Barbier]
+Ein Barbier soll genau die Personen rasieren, die sich nicht selbst rasieren.
+Gehört er selbst zur betrachteten Personengruppe, so müsste er sich genau
+dann selbst rasieren, wenn er sich nicht selbst rasiert. Ein Barbier mit
+dieser Eigenschaft kann nicht existieren. Dies ist eine Veranschaulichung
+der Antinomie, kein Beweis über tatsächlich existierende Personen.
+\end{beispiel}
+
+\begin{bemerkung}[Lügner und Epimenides]
+Die Mitschrift nennt auch den Satz eines Kreters: \glqq Alle Kreter
+lügen\grqq. Dieser ist ohne weitere Annahmen kein logisches Paradoxon:
+Ist er falsch, folgt nur, dass nicht alle Kreter immer lügen.
+Der eigentliche Lügner-Satz \glqq Dieser Satz ist falsch\grqq\ richtet
+sich dagegen unmittelbar auf seinen eigenen Wahrheitswert.
+\end{bemerkung}
+
+\subsection{Axiomatik und Klassen}
+\notizquelle{28--32}
+
+Die Mitschrift skizziert verschiedene Reaktionen auf solche Antinomien:
+Typentheorien trennen verschiedene Stufen von Objekten; eine Beschränkung
+auf endliche Mengen wäre für die hier benötigte Analysis zu eng.
+Der in der Vorlesung verfolgte Weg ist die \textbf{Axiomatik}.
+
+\begin{definition}[Axiomatischer Ansatz]
+Axiome sind festgelegte Grundannahmen einer Theorie. Ein Beweis leitet
+weitere Aussagen durch logische Schlussregeln aus diesen Annahmen ab.
+Axiome müssen nicht als unmittelbar \glqq offensichtlich wahr\grqq\ gelten;
+entscheidend ist, welche Theorie sie beschreiben.
+\end{definition}
+
+Für die Mengenlehre verwenden wir den Rahmen von
+\textbf{Zermelo--Fraenkel (ZF)}. Mit dem zusätzlichen Auswahlaxiom spricht
+man von \textbf{ZFC}. Die Vorlesung gibt hier einen Überblick, keine
+vollständige Axiomenliste.
+
+\begin{description}[style=nextline,leftmargin=0pt]
+\item[Extensionalitätsaxiom]
+Zwei Mengen sind genau dann gleich, wenn sie dieselben Elemente besitzen:
+\[
+    M=N\quad\Longleftrightarrow\quad
+    \forall x:\ (x\in M\Longleftrightarrow x\in N).
+\]
+Insbesondere gibt es höchstens eine leere Menge. Ihre Existenz folgt aus
+den Existenzaxiomen von ZF; Extensionalität allein liefert nur Eindeutigkeit.
+\item[Aussonderungsschema]
+Ist $M$ bereits eine Menge und $P(x)$ eine zulässige Eigenschaft, dann ist
+\[
+    \{x\in M\mid P(x)\}
+\]
+ebenfalls eine Menge. Die Einschränkung auf eine schon vorhandene Menge
+ist wesentlich: Eine uneingeschränkte Menge $\{x\mid P(x)\}$ wird nicht
+zugelassen.
+\item[Weitere Existenzforderungen]
+Aus den entsprechenden ZF-Axiomen folgt: Für Mengen $M,N$ sind $M\cup N$
+und $\Pot(M)$ Mengen, und es existiert eine unendliche Menge.
+Das Auswahlaxiom ist eine zusätzliche Annahme und wird hier nicht
+weiter ausgeführt.
+\end{description}
+
+\begin{beispiel}[Aussonderung in einer gegebenen Menge]
+Der Schnitt ist durch Aussonderung aus $M$ konstruierbar:
+\[
+    M\cap N=\{x\in M\mid x\in N\}.
+\]
+Ebenso ist $M\setminus N=\{x\in M\mid x\notin N\}$ eine Menge.
+\end{beispiel}
+
+\begin{bemerkung}[Mengen und echte Klassen]
+Eine durch eine Eigenschaft beschriebene Gesamtheit von Mengen nennen wir
+hier eine \textbf{Klasse}. In ZF ist dies eine abkürzende Sprechweise,
+keine zusätzliche Art von Objekten innerhalb der Theorie.
+Jede Menge bestimmt eine Klasse, aber nicht jede Klasse ist eine Menge.
+Eine Klasse, die keine Menge ist, heißt \textbf{echte Klasse}.
+Die Gesamtheit aller Mengen ist eine echte Klasse: Wäre sie eine Menge
+$U$, könnte man durch Aussonderung
+$\{M\in U\mid M\notin M\}$ bilden und erhielte erneut Russells Widerspruch.
+\end{bemerkung}
+
+\subsection{Unvollständigkeit}
+\notizquelle{32--33}
+
+Die Mitschrift gibt einen informellen Ausblick auf Gödels
+Unvollständigkeitssätze (1931). Die dortige Formulierung
+\glqq jede halbwegs interessante Theorie\grqq\ benötigt folgende
+Voraussetzungen.
+
+\begin{satz}[Erster Unvollständigkeitssatz, ohne Beweis]
+Eine widerspruchsfreie, effektiv axiomatisierbare formale Theorie, die
+genügend elementare Arithmetik ausdrücken kann, ist unvollständig:
+Es gibt eine Aussage $A$ ihrer Sprache, für die weder $A$ noch $\neg A$
+in dieser Theorie beweisbar ist.
+\end{satz}
+
+\begin{satz}[Zweiter Unvollständigkeitssatz, ohne Beweis]
+Eine widerspruchsfreie, effektiv axiomatisierbare Theorie mit hinreichend
+viel Arithmetik kann ihre eigene, in üblicher Weise formalisierte
+Widerspruchsfreiheit nicht innerhalb derselben Theorie beweisen.
+\end{satz}
+
+\begin{bemerkung}[Einordnung]
+\glqq Unvollständig\grqq\ bedeutet nicht, dass eine Aussage weder wahr
+noch falsch ist, sondern dass die gewählten Axiome sie nicht entscheiden.
+Ein Beweis der Widerspruchsfreiheit in einer stärkeren Theorie ist damit
+nicht ausgeschlossen. Die Sätze sind auch kein Nachweis, dass ZF
+widersprüchlich ist. Das Buch-Beispiel der Mitschrift dient lediglich
+der Anschauung und ersetzt keinen Beweis.
+\end{bemerkung}
+
+\noindent{\small Fachliche Präzisierung der Voraussetzungen: P.~Raatikainen,
+\emph{Gödel's Incompleteness Theorems}, Stanford Encyclopedia of Philosophy,
+\url{https://plato.stanford.edu/entries/goedel-incompleteness/}.}

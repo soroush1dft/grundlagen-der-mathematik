@@ -1,0 +1,216 @@
+% Fortsetzung von Kapitel 2. Quelle: kumulative Mitschrift, PDF-S. 46--54.
+\subsection{Abbildungen}
+\notizquelle{46--54}
+
+\subsubsection*{Definition und Wohldefiniertheit}
+\begin{definition}[Abbildung und Graph]
+Eine \textbf{Abbildung} $f:X\to Y$ ordnet jedem $x\in X$ genau ein
+Element $f(x)\in Y$ zu. Wir schreiben $x\mapsto f(x)$.
+$X$ heißt \textbf{Definitionsbereich}, $Y$ heißt \textbf{Zielbereich}.
+Formal wird die Zuordnung durch eine Relation $G_f\subset X\times Y$
+mit der Eigenschaft
+\[
+    \forall x\in X\;\exists!y\in Y:\ (x,y)\in G_f
+\]
+beschrieben. $G_f=\{(x,f(x))\mid x\in X\}$ ist der \textbf{Graph} von $f$.
+Definitions- und Zielbereich gehören zur Angabe der Abbildung.
+\end{definition}
+
+\begin{beispiel}[Einfache Zuordnungen]
+\begin{itemize}
+    \item Die Identität $\operatorname{id}_X:X\to X$, $x\mapsto x$,
+    hat den Graphen $\{(x,x)\mid x\in X\}$.
+    \item $f:\N\to\N$, $n\mapsto n+1$, ist eine Abbildung.
+    \item Die Vorschrift $\N\to\N$, $n\mapsto n-1$, ist wegen
+    $0\mapsto-1\notin\N$ keine Abbildung in den angegebenen Zielbereich.
+    Auf $\Z\to\Z$ ist dieselbe Vorschrift wohldefiniert.
+\end{itemize}
+Hier und im gesamten Skript gilt $0\in\N$.
+\end{beispiel}
+
+\begin{beispiel}[Abhängigkeit von der Darstellung]
+Die Vorschrift $\Q\to\Z$, $p/q\mapsto p$, ist ohne Einschränkung
+der Bruchdarstellung nicht wohldefiniert: $1/2=2/4$, aber $1\ne2$.
+Verlangt man dagegen eine vollständig gekürzte Darstellung mit
+$q>0$, ist der Zähler eindeutig. Für $0$ ist die gekürzte Darstellung
+$0/1$. Damit erhält man eine wohldefinierte Abbildung nach $\Z$.
+Die Positivitätsforderung betrifft den \emph{Nenner}; der Zähler
+kann negativ oder null sein.
+\end{beispiel}
+
+\begin{beispiel}[Repräsentanten von Restklassen]
+Für $m\ge1$ ist die Vorschrift
+\[
+    \Z/{\sim_m}\longrightarrow\Z,\qquad [k]\longmapsto k
+\]
+nicht wohldefiniert: $[0]=[m]$, aber $0\ne m$.
+Dagegen ist die natürliche Projektion
+$\Z\to\Z/{\sim_m}$, $k\mapsto[k]$, wohldefiniert.
+Auch die Wahl des \emph{eindeutigen} Repräsentanten in
+$\{0,\ldots,m-1\}$ definiert eine Abbildung aus der Quotientenmenge;
+dies ist eine zusätzliche, ausdrücklich festgelegte Regel.
+\end{beispiel}
+
+\begin{beispiel}[Stückweise Definition und Collatz-Folge]
+Die Vorschrift
+\[
+    c:\N\to\N,\qquad
+    c(n)=\begin{cases}
+        n/2,&n\text{ gerade},\\
+        3n+1,&n\text{ ungerade}
+    \end{cases}
+\]
+ist wohldefiniert, weil genau einer der Fälle zutrifft und das Ergebnis
+jeweils in $\N$ liegt. Iteration liefert für den Startwert $7$:
+\[
+\begin{aligned}
+    7,22,11,34,17,52,26,13,40,20,\\
+    10,5,16,8,4,2,1,\ldots
+\end{aligned}
+\]
+Die in der Vorlesung vorgestellte Collatz-Vermutung besagt, dass die
+Iteration bei jedem \emph{positiven} Startwert irgendwann $1$ erreicht.
+Danach wiederholt sich $1,4,2,1,\ldots$; die Folge endet also nicht
+von selbst. Der Startwert $0$ bleibt bei $0$ und ist ausdrücklich
+aus der Vermutung ausgeschlossen. Wohldefiniertheit der Vorschrift
+ist von dieser Aussage über ihr langfristiges Verhalten zu unterscheiden.
+\end{beispiel}
+
+\subsubsection*{Komposition und Einschränkung}
+\begin{definition}[Komposition]
+Für Abbildungen $f:X\to Y$ und $g:Y\to Z$ ist die
+\textbf{Komposition} $g\circ f:X\to Z$ gegeben durch
+\[
+    (g\circ f)(x):=g(f(x)).
+\]
+Man wendet zuerst $f$ und dann $g$ an.
+\end{definition}
+
+\begin{beispiel}[Die Reihenfolge ist wesentlich]
+Für $f,g:\R\to\R$, $f(x)=x+1$ und $g(x)=x^2$, gilt
+\[
+    (g\circ f)(x)=(x+1)^2,
+    \qquad (f\circ g)(x)=x^2+1.
+\]
+Bei $x=1$ ergeben sich $4$ bzw.\ $2$, also $g\circ f\ne f\circ g$.
+Im Allgemeinen müssen nicht einmal beide Kompositionen definiert sein.
+\end{beispiel}
+
+\begin{definition}[Einschränkung]
+Für $A\subset X$ ist die Inklusion $\iota:A\to X$, $x\mapsto x$,
+eine Abbildung. Die \textbf{Einschränkung} von $f:X\to Y$ auf $A$ ist
+\[
+    f|_A:=f\circ\iota:A\to Y,\qquad x\mapsto f(x).
+\]
+\end{definition}
+
+\subsubsection*{Graphen, Bilder und Urbilder}
+\begin{beispiel}[Zwei Funktionsgraphen]
+Die Betragsfunktion und die Sprungfunktion der Mitschrift sind
+\[
+    |x|=\begin{cases}x,&x\ge0,\\-x,&x<0,\end{cases}
+    \qquad
+    h(x)=\begin{cases}0,&x\le0,\\1,&x>0.\end{cases}
+\]
+Beide sind Abbildungen $\R\to\R$; insbesondere ist $h(0)=0$.
+\begin{center}
+\begin{tikzpicture}[scale=0.72]
+    \draw[->] (-2.5,0)--(2.7,0) node[right] {$x$};
+    \draw[->] (0,-0.5)--(0,2.8) node[above] {$y$};
+    \draw[thick,primary] (-2.2,2.2)--(0,0)--(2.2,2.2);
+    \node at (0,-1) {$y=|x|$};
+\end{tikzpicture}
+\hspace{1.2cm}
+\begin{tikzpicture}[scale=0.72]
+    \draw[->] (-2.5,0)--(2.7,0) node[right] {$x$};
+    \draw[->] (0,-0.5)--(0,2.8) node[above] {$y$};
+    \draw[very thick,primary] (-2.2,0)--(0,0);
+    \draw[very thick,primary] (0,1)--(2.2,1);
+    \fill[primary] (0,0) circle (2.8pt);
+    \draw[primary,fill=white,thick] (0,1) circle (2.8pt);
+    \node[left] at (0,1) {$1$};
+    \node at (0,-1) {$y=h(x)$};
+\end{tikzpicture}
+\end{center}
+\end{beispiel}
+
+\begin{definition}[Bild und Urbild]
+Sei $f:X\to Y$ eine Abbildung.
+\begin{enumerate}
+    \item Für $A\subset X$ heißt
+    \[
+        f(A):=\{f(x)\mid x\in A\}
+        =\{y\in Y\mid\exists x\in A:\ f(x)=y\}
+    \]
+    das \textbf{Bild von $A$}. Das \textbf{Bild der Abbildung} ist
+    $\operatorname{im}(f):=f(X)\subset Y$.
+    \item Für $B\subset Y$ heißt
+    \[
+        f^{-1}(B):=\{x\in X\mid f(x)\in B\}
+    \]
+    das \textbf{Urbild von $B$}.
+    Für ein einzelnes $y\in Y$ schreibt man auch
+    $f^{-1}(y):=f^{-1}(\{y\})$ und nennt dies die \textbf{Faser über $y$}.
+\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}[Urbild ist keine Umkehrfunktion]
+Urbilder sind für jede Abbildung definiert; sie sind Mengen und dürfen
+leer sein oder mehrere Elemente enthalten. Die Schreibweise $f^{-1}(B)$
+setzt keine Umkehrfunktion voraus. Außerdem ist $f(x)$ ein Element,
+während $f(A)$ eine Menge ist. Der Zielbereich $Y$ kann größer als $f(X)$ sein.
+\end{bemerkung}
+
+\begin{beispiel}
+Für $q:\Z\to\N$, $q(n)=n^2$, sind
+$q(\{-2,0,2\})=\{0,4\}$,
+$q^{-1}(\{4\})=\{-2,2\}$ und $q^{-1}(\{5\})=\emptyset$.
+\end{beispiel}
+
+\subsubsection*{Injektivität, Surjektivität und Bijektivität}
+\begin{definition}
+Eine Abbildung $f:X\to Y$ heißt
+\begin{enumerate}
+    \item \textbf{injektiv}, falls
+    $\forall x,x'\in X:\ f(x)=f(x')\Rightarrow x=x'$;
+    \item \textbf{surjektiv}, falls
+    $\forall y\in Y\;\exists x\in X:\ f(x)=y$;
+    \item \textbf{bijektiv}, falls sie injektiv und surjektiv ist.
+\end{enumerate}
+In Fasern formuliert: Für jedes $y\in Y$ enthält $f^{-1}(\{y\})$
+bei Injektivität höchstens ein, bei Surjektivität mindestens ein und
+bei Bijektivität genau ein Element.
+\end{definition}
+
+\begin{beispiel}[Beispiele aus der Mitschrift]
+\begin{enumerate}
+    \item $\{1,2,3\}\to\{2,4,6,8\}$, $n\mapsto2n$, ist injektiv,
+    aber wegen der fehlenden $8$ nicht surjektiv.
+    \item $\N\to\{35\}$, $n\mapsto35$, ist surjektiv, aber nicht
+    injektiv, etwa wegen $f(0)=f(1)$.
+    \item $\Z\to\N$, $n\mapsto n^2$, ist weder injektiv
+    ($2^2=(-2)^2$) noch surjektiv ($5$ ist kein Quadrat).
+    \item $\Z\to\N$, $n\mapsto|n|$, ist surjektiv, da $|k|=k$
+    für jedes $k\in\N$, aber wegen $|-2|=|2|$ nicht injektiv.
+    \item $\Z\to\Z$, $n\mapsto-n$, ist bijektiv:
+    Aus $-a=-b$ folgt $a=b$, und $-(-y)=y$ liefert zu jedem $y$ ein Urbild.
+\end{enumerate}
+\end{beispiel}
+
+\begin{satz}[Zielbereich auf das Bild einschränken]
+Für jede Abbildung $f:X\to Y$ ist
+$\widetilde f:X\to f(X)$, $x\mapsto f(x)$, surjektiv.
+\end{satz}
+\begin{proof}
+Jedes $y\in f(X)$ hat nach Definition die Form $y=f(x)$ für ein $x\in X$.
+\end{proof}
+
+\begin{bemerkung}[Wohldefiniertheit zuerst]
+Wohldefiniertheit verlangt, dass \emph{jedes Eingabeelement genau einen
+Ausgabewert} im Zielbereich erhält. Injektivität verlangt dagegen,
+dass \emph{verschiedene Eingaben verschiedene Ausgaben} haben.
+Eine konstante Abbildung ist wohldefiniert und im Allgemeinen nicht injektiv.
+Surjektivität hängt vom angegebenen Zielbereich ab: $n\mapsto2n$
+ist von $\N$ nach $\N$ nicht surjektiv, von $\N$ nach
+$\{2n\mid n\in\N\}$ dagegen schon.
+\end{bemerkung}
