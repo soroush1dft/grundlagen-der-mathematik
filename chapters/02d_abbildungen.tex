@@ -214,3 +214,133 @@ Surjektivität hängt vom angegebenen Zielbereich ab: $n\mapsto2n$
 ist von $\N$ nach $\N$ nicht surjektiv, von $\N$ nach
 $\{2n\mid n\in\N\}$ dagegen schon.
 \end{bemerkung}
+
+\notizquelleNeu{2--7}
+
+\begin{bemerkung}[Logische Verneinung der Injektivität]
+Aus der Definition ergibt sich durch Verneinung und Kontraposition:
+\begin{align*}
+    f\text{ nicht injektiv}
+    &\iff \exists x_1,x_2\in X:\ \bigl(f(x_1)=f(x_2)\land x_1\ne x_2\bigr),\\
+    f\text{ injektiv}
+    &\iff \neg\bigl(\exists x_1,x_2\in X:\ (f(x_1)=f(x_2)\land x_1\ne x_2)\bigr)\\
+    &\iff \forall x_1,x_2\in X:\ \bigl(f(x_1)\ne f(x_2)\lor x_1=x_2\bigr)\\
+    &\iff \forall x_1,x_2\in X:\ \bigl(f(x_1)=f(x_2)\implies x_1=x_2\bigr),
+\end{align*}
+wobei im letzten Schritt $(A\implies B)\equiv(\neg A\lor B)$ eingeht.
+In Pfeildiagrammen zwischen endlichen Mengen lässt sich dies unmittelbar
+ablesen:
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+    % Keine Abbildung
+    \draw (0,0) ellipse (0.55 and 1.15);
+    \draw (2,0) ellipse (0.55 and 1.15);
+    \fill (0,0.6) circle (1.5pt) (0,0) circle (1.5pt) (0,-0.6) circle (1.5pt);
+    \fill (2,0.75) circle (1.5pt) (2,0.25) circle (1.5pt) (2,-0.25) circle (1.5pt) (2,-0.75) circle (1.5pt);
+    \draw[->] (0.08,0.6)--(1.92,0.75);
+    \draw[->] (0.08,0)--(1.92,0.25);
+    \draw[->] (0.08,0)--(1.92,-0.25);
+    \draw[->] (0.08,-0.6)--(1.92,-0.75);
+    \node[align=center,font=\small] at (1,-1.55) {keine Abbildung!};
+
+    % Injektiv, nicht surjektiv
+    \begin{scope}[xshift=4.2cm]
+    \draw (0,0) ellipse (0.55 and 1.15);
+    \draw (2,0) ellipse (0.55 and 1.15);
+    \fill (0,0.5) circle (1.5pt) (0,0) circle (1.5pt) (0,-0.5) circle (1.5pt);
+    \fill (2,0.75) circle (1.5pt) (2,0.25) circle (1.5pt) (2,-0.25) circle (1.5pt) (2,-0.75) circle (1.5pt);
+    \draw[->] (0.08,0.5)--(1.92,0.75);
+    \draw[->] (0.08,0)--(1.92,0.25);
+    \draw[->] (0.08,-0.5)--(1.92,-0.25);
+    \node[align=center,font=\small] at (1,-1.55) {injektiv,\\nicht surjektiv};
+    \end{scope}
+
+    % Surjektiv, nicht injektiv
+    \begin{scope}[xshift=8.4cm]
+    \draw (0,0) ellipse (0.55 and 1.15);
+    \draw (2,0) ellipse (0.55 and 1.15);
+    \fill (0,0.7) circle (1.5pt) (0,0.2) circle (1.5pt) (0,-0.3) circle (1.5pt) (0,-0.75) circle (1.5pt);
+    \fill (2,0.5) circle (1.5pt) (2,0) circle (1.5pt) (2,-0.5) circle (1.5pt);
+    \draw[->] (0.08,0.7)--(1.92,0.5);
+    \draw[->] (0.08,0.2)--(1.92,0.5);
+    \draw[->] (0.08,-0.3)--(1.92,0);
+    \draw[->] (0.08,-0.75)--(1.92,-0.5);
+    \node[align=center,font=\small] at (1,-1.55) {surjektiv,\\nicht injektiv};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+Ebenso ist $f:\R\to\R_{\ge0}$, $x\mapsto x^2$, surjektiv, aber nicht injektiv,
+etwa wegen $f^{-1}(\{2\})=\{\sqrt{2},-\sqrt{2}\}$.
+\end{bemerkung}
+
+\begin{lemma}[Komposition injektiver und surjektiver Abbildungen]
+Seien $f:X\to Y$ und $g:Y\to Z$ Abbildungen zwischen Mengen.
+\begin{enumerate}
+    \item Sind $f$ und $g$ injektiv, dann ist auch $g\circ f:X\to Z$ injektiv.
+    \item Sind $f$ und $g$ surjektiv, dann ist auch $g\circ f:X\to Z$ surjektiv.
+    \item Sind $f$ und $g$ bijektiv, dann ist auch $g\circ f:X\to Z$ bijektiv.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\begin{enumerate}
+    \item Seien $x_1,x_2\in X$ mit $(g\circ f)(x_1)=(g\circ f)(x_2)$, also
+    $g(f(x_1))=g(f(x_2))$. Da $g$ injektiv ist, folgt $f(x_1)=f(x_2)$.
+    Da $f$ injektiv ist, folgt daraus $x_1=x_2$.
+    \item Sei $z\in Z$. Da $g$ surjektiv ist, existiert ein $y\in Y$ mit
+    $g(y)=z$. Da $f$ surjektiv ist, existiert ein $x\in X$ mit $f(x)=y$.
+    Somit gilt $(g\circ f)(x)=g(f(x))=g(y)=z$.
+    \item Folgt unmittelbar aus (1) und (2). \qedhere
+\end{enumerate}
+\end{proof}
+
+\subsubsection*{Umkehrabbildung}
+\begin{definition}[Umkehrabbildung]
+Sei $f:X\to Y$ eine bijektive Abbildung. Dann ist für jedes Element
+$y\in Y$ das Urbild $f^{-1}(\{y\})=\{x\in X\mid f(x)=y\}$ eine
+einelementige Menge. Wir definieren die \textbf{Umkehrabbildung}
+$f^{-1}:Y\to X$, indem jedes $y\in Y$ auf das eindeutige Element in
+$f^{-1}(\{y\})$ geschickt wird; mit anderen Worten: $f^{-1}(y)\in X$ ist
+das eindeutige Element in $X$ mit $f(f^{-1}(y))=y$.
+\end{definition}
+
+\begin{bemerkung}[Urbild vs.\ Umkehrabbildung]
+Die Schreibweise $f^{-1}(y)$ bezeichnet damit zwei verschiedene Dinge:
+Das Urbild $f^{-1}(\{y\})$ (oft kurz $f^{-1}(y)$ geschrieben) ist für
+\emph{jede} Abbildung als Teilmenge von $X$ definiert, die Umkehrabbildung
+$f^{-1}:Y\to X$ hingegen nur für \emph{bijektive} Abbildungen $f$.
+\end{bemerkung}
+
+\begin{beispiel}
+Die Abbildung $f:\R_{\ge0}\to\R_{\ge0}$, $x\mapsto x^2$, ist bijektiv.
+Ihre Umkehrabbildung ist $f^{-1}:\R_{\ge0}\to\R_{\ge0}$, $x\mapsto\sqrt{x}$.
+\end{beispiel}
+
+\begin{satz}[Charakterisierung der Umkehrabbildung]
+\begin{enumerate}
+    \item Ist $f:X\to Y$ bijektiv, dann erfüllt die Umkehrabbildung
+    $f^{-1}:Y\to X$ die Gleichungen
+    \[
+        f\circ f^{-1}=\operatorname{id}_Y
+        \qquad\text{und}\qquad
+        f^{-1}\circ f=\operatorname{id}_X.
+    \]
+    \item Sind $f:X\to Y$ und $g:Y\to X$ Abbildungen mit
+    $f\circ g=\operatorname{id}_Y$ und $g\circ f=\operatorname{id}_X$,
+    dann ist $f$ bijektiv und es gilt $g=f^{-1}$.
+\end{enumerate}
+\end{satz}
+\begin{proof}
+\begin{enumerate}
+    \item Für jedes $y\in Y$ gilt $f(f^{-1}(y))=y$ nach Definition von $f^{-1}$,
+    also $f\circ f^{-1}=\operatorname{id}_Y$. Für jedes $x\in X$ liegt $x$
+    im Urbild $f^{-1}(\{f(x)\})$, und da dieses einelementig ist, gilt
+    $f^{-1}(f(x))=x$, also $f^{-1}\circ f=\operatorname{id}_X$.
+    \item Aus $g\circ f=\operatorname{id}_X$ folgt die Injektivität von $f$:
+    Gilt $f(x_1)=f(x_2)$, so erhält man durch Anwenden von $g$ sofort
+    $x_1=g(f(x_1))=g(f(x_2))=x_2$.
+    Aus $f\circ g=\operatorname{id}_Y$ folgt die Surjektivität von $f$:
+    Zu $y\in Y$ liefert $x:=g(y)\in X$ gerade $f(x)=f(g(y))=y$.
+    Also ist $f$ bijektiv. Schließlich gilt für jedes $y\in Y$:
+    $g(y)=f^{-1}(f(g(y)))=f^{-1}(y)$, also $g=f^{-1}$. \qedhere
+\end{enumerate}
+\end{proof}

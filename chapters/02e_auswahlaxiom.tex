@@ -1,0 +1,122 @@
+% Fortsetzung von Kapitel 2 (§ 7). Quelle: vorlesungsmitschrift_gdm1PDF_261114_161111.PDF, PDF-S. 7--13.
+\subsection{Das Auswahlaxiom}
+\notizquelleNeu{7--13}
+
+\begin{definition}[Auswahlaxiom (AC)]
+Das \textbf{Auswahlaxiom} (\emph{Axiom of Choice}, kurz \textbf{AC}) besagt:
+Zu jeder nichtleeren Menge $X$ von nichtleeren Mengen existiert eine
+\textbf{Auswahlfunktion}, das heißt eine Abbildung
+\[
+    f:X\longrightarrow\bigcup_{x\in X}x,
+    \qquad\text{sodass für alle }x\in X\text{ gilt: }f(x)\in x.
+\]
+\end{definition}
+
+\begin{beispiel}[Auswahlfunktionen]
+\begin{enumerate}
+    \item Für $X=\{\{1,2\},\{1\},\{3\},\{1,2,4\}\}$ ist
+    $f:X\to\{1,2,3,4\}$ mit
+    \[
+        \{1,2\}\mapsto1,\quad
+        \{1\}\mapsto1,\quad
+        \{3\}\mapsto3,\quad
+        \{1,2,4\}\mapsto4
+    \]
+    eine Auswahlfunktion für $X$.
+    \item Für die Menge der nichtleeren Teilmengen der natürlichen Zahlen
+    $X=\Pot(\N)\setminus\{\emptyset\}$ liefert
+    \[
+        f:\Pot(\N)\setminus\{\emptyset\}\longrightarrow\N,\qquad
+        Z\longmapsto\min(Z)
+    \]
+    (die Zuordnung zum Minimum der Elemente von $Z$) eine explizite
+    Auswahlfunktion. (In der Mitschrift kurz als $\Pot(\N)$ notiert;
+    für die leere Menge existiert kein Minimum.)
+    \item Für $X=\Pot(\R)\setminus\{\emptyset\}$ ist es nicht möglich,
+    explizit eine Auswahlfunktion hinzuschreiben; das Auswahlaxiom
+    garantiert jedoch ihre Existenz.
+    \item \emph{Schuhe und Socken (Russell):} Ist $X$ eine Menge von
+    Paaren von Schuhen, so lässt sich eine Auswahlfunktion explizit
+    angeben, indem aus jedem Paar der linke Schuh gewählt wird.
+    Ist $X$ dagegen eine Menge ununterscheidbarer Paare von Socken,
+    lässt sich keine solche Regel angeben -- hier benötigt man AC.
+\end{enumerate}
+\end{beispiel}
+
+\begin{bemerkung}[ZF, ZFC und Unabhängigkeit]
+Das Auswahlaxiom wird manchmal zum Zermelo-Fraenkelschen Axiomensystem
+dazugezählt und manchmal nicht: Man unterscheidet zwischen $\mathrm{ZF}$
+und $\mathrm{ZFC}$ ($\mathrm{ZF}+\mathrm{AC}$).
+Nach Resultaten von Gödel und Cohen ist AC unabhängig von $\mathrm{ZF}$:
+Angenommen, $\mathrm{ZF}$ ist widerspruchsfrei, dann ist sowohl
+$\mathrm{ZFC}$ als auch $\mathrm{ZF}+\neg\mathrm{AC}$ widerspruchsfrei.
+\end{bemerkung}
+
+\subsubsection*{Ordnungen und das Lemma von Zorn}
+\begin{definition}[Halbordnung und Totalordnung]
+Eine Relation $\le$ auf einer Menge $X$ heißt \textbf{Halbordnung}, wenn sie
+\begin{enumerate}
+    \item \textbf{reflexiv} ist: $\forall x\in X:\ x\le x$;
+    \item \textbf{transitiv} ist: $\forall x,y,z\in X:\ (x\le y\land y\le z)\implies x\le z$;
+    \item \textbf{antisymmetrisch} ist: $\forall x,y\in X:\ (x\le y\land y\le x)\implies x=y$.
+\end{enumerate}
+Eine Halbordnung heißt genau dann \textbf{Totalordnung}, wenn sie total ist,
+das heißt $\forall x,y\in X:\ (x\le y\lor y\le x)$.
+\end{definition}
+
+\begin{beispiel}
+Für jede Menge $X$ ist die Teilmengenrelation $\subset$ auf der
+Potenzmenge $\Pot(X)$ eine Halbordnung (im Allgemeinen keine Totalordnung).
+\end{beispiel}
+
+\begin{definition}[Extrema, minimale/maximale Elemente und Schranken]
+Sei $\le$ eine Halbordnung auf einer Menge $X$ und $Y\subset X$ eine Teilmenge.
+\begin{itemize}
+    \item Ein \textbf{Minimum} (bzw.\ \textbf{Maximum}) von $Y$ ist ein Element
+    $y\in Y$, sodass für alle $y'\in Y$ gilt: $y\le y'$ (bzw.\ $y'\le y$).
+    \item Ein \textbf{minimales Element} (bzw.\ \textbf{maximales Element}) von $Y$
+    ist ein Element $y\in Y$, sodass es kein $y'\in Y$ gibt mit $y'\ne y$ und
+    $y'\le y$ (bzw.\ $y\le y'$).
+    \item Eine \textbf{untere} (bzw.\ \textbf{obere}) \textbf{Schranke} von $Y$
+    ist ein Element $x\in X$, sodass für alle $y\in Y$ gilt:
+    $x\le y$ (bzw.\ $y\le x$).
+\end{itemize}
+\end{definition}
+
+\begin{bemerkung}
+Ist $y\in Y$ ein Maximum von $Y$, dann ist $y$ sowohl ein maximales Element
+von $Y$ als auch eine obere Schranke von $Y$.
+Wenn ein Maximum (bzw.\ Minimum) von $Y$ existiert, ist es eindeutig:
+Sind nämlich $y_1,y_2\in Y$ Maxima, so gilt $y_1\le y_2$ und $y_2\le y_1$,
+also $y_1=y_2$ wegen der Antisymmetrie.
+\end{bemerkung}
+
+\begin{beispiel}[Obere Schranken und maximale Elemente]
+\begin{enumerate}
+    \item Auf $X=\Q$ mit der üblichen Ordnung $\le$ hat das offene Intervall
+    $Y=(0,1)=\{x\in\Q\mid 0<x<1\}$ die Zahl $1$ als obere Schranke, aber
+    $1\notin Y$ ist kein Maximum von $Y$. Auch $2$ ist eine obere Schranke;
+    obere Schranken sind im Allgemeinen nicht eindeutig.
+    \item Auf $Y=\{\{1,2\},\{1\},\{3\},\{1,2,4\}\}\subset\Pot(\N)$ mit der
+    Teilmengenrelation $\subset$ gelten
+    $\{1\}\subset\{1,2\}\subset\{1,2,4\}$ und $\{1\}\subset\{1,2,4\}$.
+    Daher sind sowohl $\{1,2,4\}$ als auch $\{3\}$ maximale Elemente von $Y$
+    (keines ist echt in einer anderen Menge aus $Y$ enthalten). Ein Maximum
+    existiert nicht, da $\{3\}$ und $\{1,2,4\}$ unvergleichbar sind.
+    Die Teilmenge $\{\{1\},\{1,2\},\{1,2,4\}\}\subset Y$ ist eine
+    totalgeordnete Teilmenge von $Y$.
+\end{enumerate}
+\end{beispiel}
+
+\begin{satz}[Lemma von Zorn]
+Eine halbgeordnete Menge $(X,\le)$, in der jede totalgeordnete Teilmenge
+(das heißt je zwei Elemente in der Teilmenge sind vergleichbar) eine
+obere Schranke in $X$ besitzt, besitzt ein maximales Element.
+\end{satz}
+
+\begin{bemerkung}[Äquivalenz zu AC]
+Im Rahmen von $\mathrm{ZF}$ sind das Auswahlaxiom und das Lemma von Zorn
+äquivalent: $\mathrm{AC}\iff\text{Zorn}$ (ohne Beweis).
+(Da auch die leere Teilmenge $\emptyset\subset X$ totalgeordnet ist,
+impliziert die Voraussetzung des Lemmas von Zorn insbesondere $X\ne\emptyset$.)
+\end{bemerkung}

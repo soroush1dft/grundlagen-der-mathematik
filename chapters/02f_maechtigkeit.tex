@@ -1,0 +1,225 @@
+% Fortsetzung von Kapitel 2 (§ 8). Quelle: vorlesungsmitschrift_gdm1PDF_261114_161111.PDF, PDF-S. 14--23.
+\subsection{Mächtigkeit von Mengen}
+\vorlesungsdatum{13.\ November 2026}{vorlesungsmitschrift_gdm1PDF_261114_161111.PDF}
+\notizquelleNeu{14--23}
+
+\begin{definition}[Vergleich von Mächtigkeiten]
+Seien $M$ und $N$ Mengen. Dann sagen wir:
+\begin{enumerate}
+    \item Die Mächtigkeit von $M$ ist kleiner oder gleich der Mächtigkeit
+    von $N$ (geschrieben $|M|\le|N|$), wenn es eine injektive Abbildung
+    $f:M\to N$ gibt.
+    \item $M$ und $N$ sind \textbf{gleichmächtig} (geschrieben $|M|=|N|$),
+    wenn es eine bijektive Abbildung $f:M\to N$ gibt.
+\end{enumerate}
+Man schreibt $|M|<|N|$ genau dann, wenn $|M|\le|N|$ und $|M|\ne|N|$ gilt.
+\end{definition}
+
+\begin{bemerkung}[Endliche und unendliche Mengen]
+Das Symbol $|M|$ hat für allgemeine Mengen keine eigenständige Bedeutung;
+definiert sind zunächst nur die Relationen $|M|\le|N|$, $|M|=|N|$ und
+$|M|<|N|$.
+Ist $M$ endlich, so bezeichnet $|M|$ die Anzahl der Elemente von $M$,
+etwa $|\{1,2,4,7\}|=4$ oder $|\{\{1\},\{1,3\}\}|=2$.
+Eine Menge $M$ ist genau dann \textbf{unendlich}, wenn sie gleichmächtig
+zu einer echten Teilmenge von sich selbst ist.
+\end{bemerkung}
+
+\begin{beispiel}[Erste Gleichmächtigkeiten und Vergleiche]
+\begin{enumerate}
+    \item $\N\to\N\setminus\{0\}$, $n\mapsto n+1$, ist eine Bijektion,
+    also $|\N|=|\N\setminus\{0\}|$.
+    \item $\N\to2\N=\{\text{gerade natürliche Zahlen}\}$, $n\mapsto 2n$,
+    ist eine Bijektion, also $|\N|=|2\N|$.
+    \item Durch Inklusionen gilt $|\N|\le|\Z|\le|\Q|\le|\R|\le|\C|$.
+    \item Für jede Menge $M$ gilt $|M|\le|\Pot(M)|$, denn die Abbildung
+    $M\to\Pot(M)$, $x\mapsto\{x\}$, ist injektiv.
+\end{enumerate}
+\end{beispiel}
+
+\begin{definition}[Abzählbar und überabzählbar]
+Eine Menge $M$ heißt \textbf{abzählbar} (oder \textbf{abzählbar unendlich}),
+wenn $|M|=|\N|$ gilt.
+Sie heißt \textbf{überabzählbar}, wenn $|\N|<|M|$ gilt.
+\end{definition}
+
+\begin{satz}[Abzählbarkeit von $\Z$]
+Es gilt $|\N|=|\Z|$.
+\end{satz}
+\begin{proof}
+Die Abbildung
+\[
+    f:\N\longrightarrow\Z,\qquad
+    n\longmapsto\begin{cases}
+        \dfrac{n}{2}, & n\text{ gerade},\\[0.6em]
+        -\dfrac{n+1}{2}, & n\text{ ungerade},
+    \end{cases}
+\]
+ist eine Bijektion: Die ersten Werte sind
+$0\mapsto0$, $1\mapsto-1$, $2\mapsto1$, $3\mapsto-2$, $4\mapsto2$,
+$5\mapsto-3$, $6\mapsto3$, \dots; jedes $k\ge0$ hat genau das Urbild $2k$,
+jedes $k<0$ genau das Urbild $-2k-1$.
+\end{proof}
+
+\begin{bemerkung}[Endliche vs.\ unendliche Produkte]
+Sind $M$ und $N$ endliche Mengen mit $|M|=m\ge2$ und $|N|=n\ge2$,
+so hat $M\times N$ genau $m\cdot n$ Elemente; wegen $m\cdot n>m$ und
+$m\cdot n>n$ gilt dann $|M\times N|>|M|$ und $|M\times N|>|N|$.
+Bei unendlichen Mengen verhält sich das kartesische Produkt anders.
+\end{bemerkung}
+
+\begin{satz}[Abzählbarkeit von $\N\times\N$]
+Es gilt $|\N\times\N|=|\N|$.
+\end{satz}
+\begin{proof}
+Wegen $|\N|=|\N\setminus\{0\}|$ genügt es zu zeigen, dass
+$|\N\setminus\{0\}|=|(\N\setminus\{0\})\times(\N\setminus\{0\})|$.
+Dies gilt, da die Abbildung
+\[
+    f:(\N\setminus\{0\})\times(\N\setminus\{0\})\longrightarrow\N\setminus\{0\},
+    \qquad (n,m)\longmapsto 2^{n-1}\cdot(2m-1)
+\]
+bijektiv ist (jede positive natürliche Zahl lässt sich eindeutig als
+Produkt einer Zweierpotenz $2^{n-1}$ mit einer ungeraden positiven Zahl
+$2m-1$ schreiben).
+\end{proof}
+
+\begin{satz}[Injektionen vs.\ Surjektionen bei Mächtigkeiten]
+Seien $M$ und $N$ nichtleere Mengen. Dann gilt genau dann $|M|\le|N|$,
+wenn es eine surjektive Abbildung $N\to M$ gibt.
+\end{satz}
+\begin{proof}
+\emph{($\Rightarrow$):} Es gelte $|M|\le|N|$, das heißt es gibt eine
+injektive Abbildung $f:M\to N$. Wir fassen $f$ als bijektive Abbildung
+$\widetilde f:M\to f(M)$ auf das Bild $f(M)=\{f(x)\mid x\in M\}$ auf.
+Diese besitzt eine bijektive Umkehrabbildung $\widetilde f^{-1}:f(M)\to M$.
+Wähle ein beliebiges $x_0\in M$ (dies ist möglich, da $M\ne\emptyset$)
+und definiere
+\[
+    g:N\longrightarrow M,\qquad
+    y\longmapsto\begin{cases}
+        \widetilde f^{-1}(y), & y\in f(M),\\
+        x_0, & y\notin f(M).
+    \end{cases}
+\]
+Dann ist $g$ surjektiv, denn für jedes $x\in M$ gilt $f(x)\in f(M)$ und
+$g(f(x))=\widetilde f^{-1}(f(x))=x$.
+
+\medskip
+\noindent\emph{($\Leftarrow$):} Es existiere umgekehrt eine surjektive
+Abbildung $g:N\to M$. Zu zeigen ist, dass es eine injektive Abbildung
+$f:M\to N$ gibt.
+Es gilt $N=g^{-1}(M)=\bigcup_{x\in M}g^{-1}(\{x\})$, wobei jede Faser
+$g^{-1}(\{x\})=\{y\in N\mid g(y)=x\}$ wegen der Surjektivität von $g$
+nichtleer ist. Setze $X:=\{g^{-1}(\{x\})\mid x\in M\}$.
+Nach dem Auswahlaxiom existiert eine Auswahlfunktion $\widetilde f:X\to N$,
+das heißt $\widetilde f(g^{-1}(\{x\}))\in g^{-1}(\{x\})$ für alle $x\in M$.
+Wir definieren nun
+\[
+    f:M\longrightarrow N,\qquad x\longmapsto\widetilde f\bigl(g^{-1}(\{x\})\bigr).
+\]
+Für jedes $x\in M$ gilt dann
+$(g\circ f)(x)=g\bigl(\widetilde f(g^{-1}(\{x\}))\bigr)=x$, also ist
+$g\circ f=\operatorname{id}_M$. Insbesondere ist $g\circ f$ injektiv,
+woraus die Injektivität von $f$ folgt.
+\end{proof}
+
+\begin{bemerkung}[Injektivität bei Kompositionen]
+Allgemein gilt: Sind $f:X\to Y$ und $g:Y\to Z$ Abbildungen, sodass
+$g\circ f:X\to Z$ injektiv ist, dann ist auch $f$ injektiv (denn aus
+$f(x_1)=f(x_2)$ folgt $g(f(x_1))=g(f(x_2))$ und damit $x_1=x_2$).
+Die Abbildung $g$ muss dabei nicht injektiv sein, wie das Beispiel
+$\{1\}\to\N\to\{1\}$ mit $1\mapsto1$ und $n\mapsto1$ zeigt.
+\end{bemerkung}
+
+\begin{bemerkung}[Existenz ohne explizite Konstruktion]
+Als weiteres Beispiel für die Wirkung des Auswahlaxioms bzw.\ des Lemmas
+von Zorn besitzt $\R$ als $\Q$-Vektorraum eine Basis, aber niemand hat
+jemals eine solche Basis explizit angegeben.
+\end{bemerkung}
+
+\begin{satz}[Transitivität]
+Seien $M_1,M_2,M_3$ Mengen. Dann gilt:
+\begin{enumerate}
+    \item $|M_1|\le|M_2|$ und $|M_2|\le|M_3|\implies |M_1|\le|M_3|$.
+    \item $|M_1|=|M_2|$ und $|M_2|=|M_3|\implies |M_1|=|M_3|$.
+\end{enumerate}
+\end{satz}
+\begin{proof}
+Dies gilt, da die Verkettung injektiver (bzw.\ bijektiver) Abbildungen
+wieder injektiv (bzw.\ bijektiv) ist.
+\end{proof}
+
+\begin{satz}[Satz von Cantor]
+Für jede Menge $M$ gilt $|M|<|\Pot(M)|$.
+(Für eine endliche Menge mit $|M|=n$ ist entsprechend $|\Pot(M)|=2^n>n$.)
+\end{satz}
+\begin{proof}
+Wir wissen bereits, dass $|M|\le|\Pot(M)|$ gilt. Zu zeigen ist, dass es
+keine bijektive (genauer: nicht einmal eine surjektive) Abbildung
+$f:M\to\Pot(M)$ gibt.
+Angenommen doch, es gäbe eine surjektive Abbildung $f:M\to\Pot(M)$.
+Wir definieren
+\[
+    N:=\{x\in M\mid x\notin f(x)\}\in\Pot(M).
+\]
+Da $f$ surjektiv ist, existiert ein $x_0\in M$ mit $f(x_0)=N$.
+Wir fragen, ob $x_0\in N$ gilt:
+\begin{itemize}
+    \item Falls $x_0\in N=\{x\in M\mid x\notin f(x)\}$, so folgt
+    $x_0\notin f(x_0)=N$ -- Widerspruch.
+    \item Falls $x_0\notin N=\{x\in M\mid x\notin f(x)\}$, so folgt
+    $x_0\in f(x_0)=N$ -- Widerspruch.
+\end{itemize}
+Damit kann keine solche Abbildung $f$ existieren.
+\end{proof}
+
+\begin{bemerkung}
+Durch wiederholte Potenzmengenbildung $\N\rightsquigarrow\Pot(\N)
+\rightsquigarrow\Pot(\Pot(\N))\rightsquigarrow\dots$ erhält man
+unendlich viele paarweise verschiedene unendliche Mächtigkeiten.
+\end{bemerkung}
+
+\begin{satz}[Vergleichssatz von Hartogs]
+Seien $M$ und $N$ Mengen. Dann gilt $|M|\le|N|$ oder $|N|\le|M|$.
+\end{satz}
+\begin{proof}
+Wir können annehmen, dass $M,N\ne\emptyset$ sind (ist eine der Mengen
+leer, existiert die leere injektive Abbildung in die andere Menge).
+Zu zeigen ist, dass es eine injektive Abbildung $f:M\to N$ oder eine
+injektive Abbildung $g:N\to M$ gibt.
+Betrachte die Menge
+\[
+    X:=\{f:M'\to N\mid M'\subset M\text{ Teilmenge},\ f\text{ injektiv}\}
+\]
+und definiere darauf eine Relation $\le$ durch
+\[
+    (f:M'\to N)\le(\bar f:M''\to N)
+    :\iff M'\subset M''\text{ und }\bar f|_{M'}=f.
+\]
+Dies ist eine Halbordnung auf $X$. Wir prüfen die Voraussetzung des
+Lemmas von Zorn: Sei $Y\subset X$ eine totalgeordnete Teilmenge.
+(Für $Y=\emptyset$ ist die leere Abbildung $\emptyset\to N$ eine obere
+Schranke in $X$.) Für $Y\ne\emptyset$ definiere eine obere Schranke
+auf $U:=\bigcup_{(f:M'\to N)\in Y}M'$ durch
+\[
+    h:U\longrightarrow N,\qquad x\longmapsto g(x),
+\]
+wobei $(g:M'\to N)\in Y$ mit $x\in M'$ gewählt ist.
+Da $Y$ totalgeordnet ist, ist dies wohldefiniert (liegen $x\in M_1'$ und
+$x\in M_2'$ vor, so ist eine der Abbildungen Einschränkung der anderen)
+und injektiv (für je zwei $x_1,x_2\in U$ gibt es ein gemeinsames
+$(g:M'\to N)\in Y$ mit $x_1,x_2\in M'$).
+Somit besitzt jede totalgeordnete Teilmenge $Y\subset X$ eine obere Schranke
+in $X$. Nach dem Lemma von Zorn besitzt $X$ ein maximales Element
+$f:M'\to N$.
+
+\emph{(Abschluss des Beweises:)} Gilt $M'=M$, so ist $f:M\to N$ injektiv
+und damit $|M|\le|N|$. Gilt $M'\ne M$, so muss $f(M')=N$ sein --
+andernfalls ließen sich $x_0\in M\setminus M'$ und $y_0\in N\setminus f(M')$
+wählen, wodurch man $f$ durch $x_0\mapsto y_0$ echt zu einer injektiven
+Abbildung auf $M'\cup\{x_0\}$ fortsetzen könnte, im Widerspruch zur
+Maximalität von $f$. Also ist $f:M'\to N$ bijektiv, und die Komposition
+der Umkehrabbildung $f^{-1}:N\to M'$ mit der Inklusion $M'\hookrightarrow M$
+liefert eine injektive Abbildung $N\to M$, also $|N|\le|M|$.
+\end{proof}
