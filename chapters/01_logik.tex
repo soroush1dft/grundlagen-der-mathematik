@@ -2,7 +2,7 @@
 % Kapitel 1: Logik
 % ==========================================================================
 
-\section{Kapitel 1: Logik}
+\section{Logik}
 
 \notizquelle{1--17}
 
@@ -60,7 +60,7 @@ In der formalen Logik ist die Verknüpfung $A \land B$ rein wahrheitswertbasiert
 % --------------------------------------------------------------------------
 % Verknuepfungen und Wahrheitstafeln
 % --------------------------------------------------------------------------
-\subsection{Logische Verknüpfungen und Wahrheitstafeln}
+\subsection{Verknüpfungen und Wahrheitstafeln}
 
 Seien $A$ und $B$ Aussagen. Neue, zusammengesetzte Aussagen werden über \textbf{Wahrheitstafeln} eindeutig festgelegt:
 
@@ -159,7 +159,7 @@ Da die Spalten für $A \Rightarrow B$ und $\neg A \lor B$ übereinstimmen, ist d
 % --------------------------------------------------------------------------
 % Tautologien und Schlussregeln
 % --------------------------------------------------------------------------
-\subsection{Tautologien und Schlussregeln}
+\subsection{Tautologien}
 
 \begin{definition}[Tautologie und Widerspruch]
 Eine zusammengesetzte Aussage heißt \textbf{Tautologie}, wenn sie unabhängig von den Wahrheitswerten ihrer Teilaussagen stets den Wert \glqq wahr\grqq\ ($1$) annimmt.\newline
@@ -325,6 +325,54 @@ Ein rein mathematisches Beispiel vermeidet diese Modellannahmen:
 \]
 während $\exists y\in\R\;\forall x\in\R:\ x<y$ falsch ist
 (setze für ein vorgegebenes $y$ etwa $x=y$).
+
+\subsubsection*{Übungsblatt 3, Aufgabe 1: Quantoren, Negation und Alltagssprache}
+\notizquelleDatei{handschrift/Uebungsblatt 3_261117_094748.PDF}{1--5}
+
+\noindent\textbf{Aufgabenstellung.}
+Formulieren Sie die folgenden Sätze mithilfe von Quantoren und geeignet definierten Aussagen und Aussageformen in formale Aussagen um. Benutzen Sie die Äquivalenzen
+\[
+    \neg\bigl(\forall x\in\Omega : H(x)\bigr) \iff \exists x\in\Omega : \neg H(x),
+    \qquad
+    \neg\bigl(\exists x\in\Omega : H(x)\bigr) \iff \forall x\in\Omega : \neg H(x),
+\]
+um die gebildeten formalen Aussagen umzuformen, und übersetzen Sie das Ergebnis wieder in alltägliche Aussagen.
+
+\begin{enumerate}
+    \item \emph{„Es gibt Blätter, die nicht auf Bäumen wachsen.“}
+    \begin{itemize}
+        \item \textbf{Definitionen:} Sei $B$ die Menge aller Blätter und $H(b)$ die Aussageform „$b$ wächst auf einem Baum“.
+        \item \textbf{Formalisierung und Umformung:}
+        \[
+            \exists b\in B : \neg H(b)
+            \iff \neg\bigl(\forall b\in B : H(b)\bigr).
+        \]
+        \item \textbf{Alltägliche Aussage:} „Es ist nicht wahr, dass alle Blätter auf Bäumen wachsen.“
+    \end{itemize}
+
+    \item \emph{„Wenn ich Eintopf koche, benutze ich alle Zutaten, die ich in der Küche finde und die noch haltbar sind.“}
+    \begin{itemize}
+        \item \textbf{Definitionen:} Seien $A$ die Menge aller Zutaten in meiner Küche und $B$ die Menge aller Zutaten, die noch haltbar sind. Setze $\Omega := A\cap B$, und sei $H(x)$ die Aussageform „$x$ ist in meinem selbstgekochten Eintopf“.
+        \item \textbf{Formalisierung und Umformung:}
+        \[
+            \forall x\in\Omega : H(x)
+            \iff \neg\bigl(\exists x\in\Omega : \neg H(x)\bigr)
+            \iff \nexists x\in\Omega : \neg H(x).
+        \]
+        \item \textbf{Alltägliche Aussage:} „Es gibt keine Zutat aus meiner Küche, die noch haltbar ist und nicht in meinem Eintopf ist.“
+    \end{itemize}
+
+    \item \emph{„Für jeden handgestrickten Pullover gibt es einen Menschen, der den Pullover gestrickt hat.“}
+    \begin{itemize}
+        \item \textbf{Definitionen:} Sei $\Omega$ die Menge aller handgestrickten Pullover, $\Omega'$ die Menge aller Menschen und $H(x,y)$ die Aussageform „$x$ wurde von $y$ gestrickt“.
+        \item \textbf{Formalisierung und Umformung:}
+        \[
+            \forall x\in\Omega\;\exists y\in\Omega' : H(x,y)
+            \iff \neg\bigl(\exists x\in\Omega\;\forall y\in\Omega' : \neg H(x,y)\bigr).
+        \]
+        \item \textbf{Alltägliche Aussage:} „Es ist nicht wahr, dass es einen handgestrickten Pullover gibt, der von keinem Menschen gestrickt worden ist.“
+    \end{itemize}
+\end{enumerate}
 
 \vspace{0.8em}
 \hrule

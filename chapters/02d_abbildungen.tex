@@ -344,3 +344,80 @@ Ihre Umkehrabbildung ist $f^{-1}:\R_{\ge0}\to\R_{\ge0}$, $x\mapsto\sqrt{x}$.
     $g(y)=f^{-1}(f(g(y)))=f^{-1}(y)$, also $g=f^{-1}$. \qedhere
 \end{enumerate}
 \end{proof}
+
+\subsubsection*{Übung vom 17.\ November 2026: Präsenzaufgaben zu Bildmengen}
+\notizquelleDatei{handschrift/Uebungsblatt 3_261117_094748.PDF}{8--11}
+
+\noindent\textbf{Präsenzaufgabe 1 (Gegenbeispiel zur Gleichheit).}
+Gegeben sei die Abbildung $f:\R\to\R$, $x\mapsto\sin(x)$, sowie die Teilmengen
+\[
+    A_1 = \left\{x\in\R \;\middle|\; x\ge -\frac{\pi}{4}\right\},
+    \qquad
+    A_2 = \left\{x\in\R \;\middle|\; x\le \frac{\pi}{4}\right\}.
+\]
+Bestimmen Sie $f(A_1)\cap f(A_2)$ und $f(A_1\cap A_2)$, und prüfen Sie, ob Gleichheit gilt.
+
+\medskip
+\noindent\textbf{Lösung.}
+Da $\sin$ auf jedem Intervall der Länge $2\pi$ alle Werte in $[-1,1]$ annimmt, gilt:
+\[
+    f(A_1) = \{f(x)\mid x\ge -\tfrac{\pi}{4}\} = [-1,1],
+    \qquad
+    f(A_2) = \{f(x)\mid x\le \tfrac{\pi}{4}\} = [-1,1],
+\]
+und somit
+\[
+    f(A_1)\cap f(A_2) = [-1,1].
+\]
+Andererseits ist
+\[
+    A_1\cap A_2 = \left\{x\in\R \;\middle|\; -\frac{\pi}{4}\le x\le\frac{\pi}{4}\right\} = \left[-\frac{\pi}{4},\frac{\pi}{4}\right].
+\]
+Auf $\left[-\frac{\pi}{4},\frac{\pi}{4}\right]$ ist $\sin$ streng monoton wachsend mit $\sin\left(-\frac{\pi}{4}\right)=-\frac{\sqrt{2}}{2}$ und $\sin\left(\frac{\pi}{4}\right)=\frac{\sqrt{2}}{2}$, also gilt
+\[
+    f(A_1\cap A_2) = \left[-\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2}\right].
+\]
+Folglich ist $f(A_1)\cap f(A_2)\ne f(A_1\cap A_2)$ (es gilt lediglich die echte Inklusion $f(A_1\cap A_2)\subsetneq f(A_1)\cap f(A_2)$).
+
+\begin{center}
+\begin{tikzpicture}[xscale=0.95, yscale=1.55]
+    \fill[primary!12] (-0.7854,-0.7071) rectangle (0.7854,0.7071);
+    \draw[-{Stealth[length=2.2mm]}] (-2.3,0) -- (5.1,0) node[right] {$x$};
+    \draw[-{Stealth[length=2.2mm]}] (0,-1.25) -- (0,1.25) node[above] {$y$};
+    \draw[thick, primary, domain=-2.2:4.9, samples=120] plot (\x, {sin(\x r)});
+    \draw[dashed, secondary] (-0.7854,0) -- (-0.7854,-0.7071) -- (0,-0.7071);
+    \draw[dashed, secondary] (0.7854,0) -- (0.7854,0.7071) -- (0,0.7071);
+    \draw (-1.5708,0.06) -- (-1.5708,-0.06) node[below] {\scriptsize$-\frac{\pi}{2}$};
+    \draw (-0.7854,0.06) -- (-0.7854,-0.06) node[above=2pt] {\scriptsize$-\frac{\pi}{4}$};
+    \draw (0.7854,0.06) -- (0.7854,-0.06) node[below=2pt] {\scriptsize$\frac{\pi}{4}$};
+    \draw (1.5708,0.06) -- (1.5708,-0.06) node[below] {\scriptsize$\frac{\pi}{2}$};
+    \draw (4.7124,0.06) -- (4.7124,-0.06) node[below] {\scriptsize$\frac{3\pi}{2}$};
+    \draw (-0.06,1) -- (0.06,1) node[left=3pt] {\scriptsize$1$};
+    \draw (-0.06,0.7071) -- (0.06,0.7071) node[left=3pt] {\scriptsize$\frac{\sqrt{2}}{2}$};
+    \draw (-0.06,-0.7071) -- (0.06,-0.7071) node[right=3pt] {\scriptsize$-\frac{\sqrt{2}}{2}$};
+    \draw (-0.06,-1) -- (0.06,-1) node[left=3pt] {\scriptsize$-1$};
+\end{tikzpicture}
+\end{center}
+
+\medskip
+\noindent\textbf{Präsenzaufgabe 2 (Allgemeines Verhalten von Schnitten unter Abbildungen).}
+\begin{satz}[Bild des Schnitts zweier Teilmengen]
+Sei $f:X\to Y$ eine Abbildung und seien $A_1,A_2\subset X$ Teilmengen. Dann gilt:
+\begin{enumerate}
+    \item $f(A_1\cap A_2)\subset f(A_1)\cap f(A_2)$.
+    \item Ist $f$ injektiv, so gilt Gleichheit: $f(A_1\cap A_2)=f(A_1)\cap f(A_2)$.
+\end{enumerate}
+\end{satz}
+
+\begin{proof}
+\begin{enumerate}
+    \item Sei $y\in f(A_1\cap A_2)$ beliebig. Dann existiert ein $x\in A_1\cap A_2$ mit $f(x)=y$. Wegen $x\in A_1$ folgt $y=f(x)\in f(A_1)$, und wegen $x\in A_2$ folgt $y=f(x)\in f(A_2)$. Also gilt $y\in f(A_1)\cap f(A_2)$.
+
+    \item Wegen Teil~1 genügt es zu zeigen, dass $f(A_1)\cap f(A_2)\subset f(A_1\cap A_2)$ gilt. Sei dazu $y\in f(A_1)\cap f(A_2)$ beliebig.
+    \begin{itemize}
+        \item Wegen $y\in f(A_1)$ gibt es ein $x_1\in A_1$ mit $f(x_1)=y$.
+        \item Wegen $y\in f(A_2)$ gibt es ein $x_2\in A_2$ mit $f(x_2)=y$.
+    \end{itemize}
+    Aus $f(x_1)=y=f(x_2)$ folgt wegen der Injektivität von $f$, dass $x_1=x_2$. Setzen wir $x:=x_1=x_2$, so gilt $x\in A_1\cap A_2$ und daher $y=f(x)\in f(A_1\cap A_2)$. \qedhere
+\end{enumerate}
+\end{proof}
