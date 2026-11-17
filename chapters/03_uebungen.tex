@@ -1,0 +1,214 @@
+% ==========================================================================
+% Kapitel 3: Übungsblätter & Präsenzaufgaben
+% ==========================================================================
+\clearpage
+\section{Übungen}
+
+\subsection{Übungsblatt 3 und Präsenzaufgaben (17.\ November 2026)}
+\vorlesungsdatum{17.\ November 2026}{handschrift/Uebungsblatt 3_261117_094748.PDF}
+\notizquelleDatei{handschrift/Uebungsblatt 3_261117_094748.PDF}{1--11}
+
+\subsubsection*{Aufgabe 1: Quantoren, Negation und Alltagssprache}
+\notizquelleDatei{handschrift/Uebungsblatt 3_261117_094748.PDF}{1--5}
+
+\noindent\textbf{Aufgabenstellung.}
+Formulieren Sie die folgenden Sätze mithilfe von Quantoren und geeignet definierten Aussagen und Aussageformen in formale Aussagen um. Benutzen Sie die Äquivalenzen
+\[
+    \neg\bigl(\forall x\in\Omega : H(x)\bigr) \iff \exists x\in\Omega : \neg H(x),
+    \qquad
+    \neg\bigl(\exists x\in\Omega : H(x)\bigr) \iff \forall x\in\Omega : \neg H(x),
+\]
+um die gebildeten formalen Aussagen umzuformen, und übersetzen Sie das Ergebnis wieder in alltägliche Aussagen.
+
+\begin{enumerate}
+    \item \emph{„Es gibt Blätter, die nicht auf Bäumen wachsen.“}
+    \begin{itemize}
+        \item \textbf{Definitionen:} Sei $B$ die Menge aller Blätter und $H(b)$ die Aussageform „$b$ wächst auf einem Baum“.
+        \item \textbf{Formalisierung und Umformung:}
+        \[
+            \exists b\in B : \neg H(b)
+            \iff \neg\bigl(\forall b\in B : H(b)\bigr).
+        \]
+        \item \textbf{Alltägliche Aussage:} „Es ist nicht wahr, dass alle Blätter auf Bäumen wachsen.“
+    \end{itemize}
+
+    \item \emph{„Wenn ich Eintopf koche, benutze ich alle Zutaten, die ich in der Küche finde und die noch haltbar sind.“}
+    \begin{itemize}
+        \item \textbf{Definitionen:} Seien $A$ die Menge aller Zutaten in meiner Küche und $B$ die Menge aller Zutaten, die noch haltbar sind. Setze $\Omega := A\cap B$, und sei $H(x)$ die Aussageform „$x$ ist in meinem selbstgekochten Eintopf“.
+        \item \textbf{Formalisierung und Umformung:}
+        \[
+            \forall x\in\Omega : H(x)
+            \iff \neg\bigl(\exists x\in\Omega : \neg H(x)\bigr)
+            \iff \nexists x\in\Omega : \neg H(x).
+        \]
+        \item \textbf{Alltägliche Aussage:} „Es gibt keine Zutat aus meiner Küche, die noch haltbar ist und nicht in meinem Eintopf ist.“
+    \end{itemize}
+
+    \item \emph{„Für jeden handgestrickten Pullover gibt es einen Menschen, der den Pullover gestrickt hat.“}
+    \begin{itemize}
+        \item \textbf{Definitionen:} Sei $\Omega$ die Menge aller handgestrickten Pullover, $\Omega'$ die Menge aller Menschen und $H(x,y)$ die Aussageform „$x$ wurde von $y$ gestrickt“.
+        \item \textbf{Formalisierung und Umformung:}
+        \[
+            \forall x\in\Omega\;\exists y\in\Omega' : H(x,y)
+            \iff \neg\bigl(\exists x\in\Omega\;\forall y\in\Omega' : \neg H(x,y)\bigr).
+        \]
+        \item \textbf{Alltägliche Aussage:} „Es ist nicht wahr, dass es einen handgestrickten Pullover gibt, der von keinem Menschen gestrickt worden ist.“
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection*{Aufgabe 2: Mengenidentitäten}
+\notizquelleDatei{handschrift/Uebungsblatt 3_261117_094748.PDF}{1, 6--7}
+
+\noindent\textbf{Aufgabenstellung.}
+Beweisen oder widerlegen Sie für alle Mengen $A$, $B$ und $C$:
+\begin{enumerate}
+    \item $\bigl((A\cap B)\setminus C\bigr)\cup\bigl((B\cap C)\setminus A\bigr)\cup\bigl((A\cap C)\setminus B\bigr)
+    = \bigl((A\cap B)\cup(B\cap C)\cup(A\cap C)\bigr)\setminus(A\cap B\cap C)$.
+    \item $\bigl((A\cup B)\setminus C\bigr)\cap\bigl((B\cup C)\setminus A\bigr)\cap\bigl((A\cup C)\setminus B\bigr)
+    = \bigl((A\cup B)\cap(B\cup C)\cap(A\cup C)\bigr)\setminus(A\cap B\cap C)$.
+\end{enumerate}
+
+\begin{proof}[Lösung zu Teil 1 (wahr)]
+Für beliebige Mengen $X,Y$ gilt $(X\cap Y)\setminus Z = (X\cap Y)\setminus(X\cap Y\cap Z)$, denn ein Element $x\in X\cap Y$ liegt genau dann nicht in $Z$, wenn es nicht in $X\cap Y\cap Z$ liegt. Wendet man dies auf die drei Terme der linken Seite an (in einer festen Obermenge $U$, z.\,B.\ $U=A\cup B\cup C$, mit Komplement $(\cdot)^c$), so erhält man:
+\begin{align*}
+    \bigl((A\cap B)\setminus C\bigr)\cup\bigl((B\cap C)\setminus A\bigr)\cup\bigl((A\cap C)\setminus B\bigr)
+    &= \bigl((A\cap B)\cap (A\cap B\cap C)^c\bigr) \\
+    &\quad \cup \bigl((B\cap C)\cap (A\cap B\cap C)^c\bigr) \\
+    &\quad \cup \bigl((A\cap C)\cap (A\cap B\cap C)^c\bigr) \\
+    &= \bigl((A\cap B)\cup(B\cap C)\cup(A\cap C)\bigr)\cap (A\cap B\cap C)^c \\
+    &= \bigl((A\cap B)\cup(B\cap C)\cup(A\cap C)\bigr)\setminus(A\cap B\cap C).
+\end{align*}
+Anschaulich beschreibt dies genau diejenigen Elemente, die in mindestens zwei der Mengen $A,B,C$, aber nicht in allen dreien liegen:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+    % A\cap B
+    \begin{scope}
+        \clip (0,0.65) circle (1.05);
+        \fill[primary!25] (-0.65,-0.4) circle (1.05);
+    \end{scope}
+    % B\cap C
+    \begin{scope}
+        \clip (-0.65,-0.4) circle (1.05);
+        \fill[primary!25] (0.65,-0.4) circle (1.05);
+    \end{scope}
+    % A\cap C
+    \begin{scope}
+        \clip (0,0.65) circle (1.05);
+        \fill[primary!25] (0.65,-0.4) circle (1.05);
+    \end{scope}
+    % Ausschluss A\cap B\cap C
+    \begin{scope}
+        \clip (0,0.65) circle (1.05);
+        \clip (-0.65,-0.4) circle (1.05);
+        \fill[white] (0.65,-0.4) circle (1.05);
+    \end{scope}
+    % Kreise zeichnen
+    \draw[thick, primary] (0,0.65) circle (1.05);
+    \draw[thick, primary] (-0.65,-0.4) circle (1.05);
+    \draw[thick, primary] (0.65,-0.4) circle (1.05);
+    \node at (0,1.95) {$A$};
+    \node at (-1.9,-0.7) {$B$};
+    \node at (1.9,-0.7) {$C$};
+\end{tikzpicture}
+\end{center}
+\end{proof}
+
+\begin{proof}[Widerlegung zu Teil 2 (falsch)]
+Wähle als Gegenbeispiel $A=\{1\}$, $B=\{1\}$ und $C=\emptyset$.
+\begin{itemize}
+    \item \textbf{Linke Seite:} Es ist $(A\cup B)\setminus C = \{1\}$, $(B\cup C)\setminus A = \emptyset$ und $(A\cup C)\setminus B = \emptyset$. Damit ergibt sich
+    \[
+        \{1\}\cap\emptyset\cap\emptyset = \emptyset.
+    \]
+    \item \textbf{Rechte Seite:} Es ist $A\cup B = B\cup C = A\cup C = \{1\}$ sowie $A\cap B\cap C = \emptyset$. Damit ergibt sich
+    \[
+        (\{1\}\cap\{1\}\cap\{1\})\setminus\emptyset = \{1\}.
+    \]
+\end{itemize}
+Da $\emptyset\ne\{1\}$, ist die Aussage im Allgemeinen falsch. (Tatsächlich ist die linke Seite für beliebige Mengen $A,B,C$ stets leer, da ein Element im Schnitt weder in $C$, noch in $A$, noch in $B$ liegen dürfte, zugleich aber in $A\cup B$.)
+\end{proof}
+
+\subsubsection*{Präsenzaufgabe 1: Bildmengen von Schnitten}
+\notizquelleDatei{handschrift/Uebungsblatt 3_261117_094748.PDF}{8--9}
+
+\noindent\textbf{Aufgabenstellung.}
+Gegeben sei die Abbildung $f:\R\to\R$, $x\mapsto\sin(x)$, sowie die Teilmengen
+\[
+    A_1 = \left\{x\in\R \;\middle|\; x\ge -\frac{\pi}{4}\right\},
+    \qquad
+    A_2 = \left\{x\in\R \;\middle|\; x\le \frac{\pi}{4}\right\}.
+\]
+Bestimmen Sie $f(A_1)\cap f(A_2)$ und $f(A_1\cap A_2)$, und prüfen Sie, ob Gleichheit gilt.
+
+\medskip
+\noindent\textbf{Lösung.}
+Da $\sin$ auf jedem Intervall der Länge $2\pi$ alle Werte in $[-1,1]$ annimmt, gilt:
+\[
+    f(A_1) = \{f(x)\mid x\ge -\tfrac{\pi}{4}\} = [-1,1],
+    \qquad
+    f(A_2) = \{f(x)\mid x\le \tfrac{\pi}{4}\} = [-1,1],
+\]
+und somit
+\[
+    f(A_1)\cap f(A_2) = [-1,1].
+\]
+Andererseits ist
+\[
+    A_1\cap A_2 = \left\{x\in\R \;\middle|\; -\frac{\pi}{4}\le x\le\frac{\pi}{4}\right\} = \left[-\frac{\pi}{4},\frac{\pi}{4}\right].
+\]
+Auf $\left[-\frac{\pi}{4},\frac{\pi}{4}\right]$ ist $\sin$ streng monoton wachsend mit $\sin\left(-\frac{\pi}{4}\right)=-\frac{\sqrt{2}}{2}$ und $\sin\left(\frac{\pi}{4}\right)=\frac{\sqrt{2}}{2}$, also gilt
+\[
+    f(A_1\cap A_2) = \left[-\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2}\right].
+\]
+Folglich ist $f(A_1)\cap f(A_2)\ne f(A_1\cap A_2)$ (es gilt lediglich die echte Inklusion $f(A_1\cap A_2)\subsetneq f(A_1)\cap f(A_2)$).
+
+\begin{center}
+\begin{tikzpicture}[xscale=0.95, yscale=1.55]
+    % Markierter Bereich A1 cap A2
+    \fill[primary!12] (-0.7854,-0.7071) rectangle (0.7854,0.7071);
+    % Achsen
+    \draw[-{Stealth[length=2.2mm]}] (-2.3,0) -- (5.1,0) node[right] {$x$};
+    \draw[-{Stealth[length=2.2mm]}] (0,-1.25) -- (0,1.25) node[above] {$y$};
+    % Sinus-Kurve
+    \draw[thick, primary, domain=-2.2:4.9, samples=120] plot (\x, {sin(\x r)});
+    % Hilfslinien fuer +-pi/4
+    \draw[dashed, secondary] (-0.7854,0) -- (-0.7854,-0.7071) -- (0,-0.7071);
+    \draw[dashed, secondary] (0.7854,0) -- (0.7854,0.7071) -- (0,0.7071);
+    % Ticks x-Achse
+    \draw (-1.5708,0.06) -- (-1.5708,-0.06) node[below] {\scriptsize$-\frac{\pi}{2}$};
+    \draw (-0.7854,0.06) -- (-0.7854,-0.06) node[above=2pt] {\scriptsize$-\frac{\pi}{4}$};
+    \draw (0.7854,0.06) -- (0.7854,-0.06) node[below=2pt] {\scriptsize$\frac{\pi}{4}$};
+    \draw (1.5708,0.06) -- (1.5708,-0.06) node[below] {\scriptsize$\frac{\pi}{2}$};
+    \draw (4.7124,0.06) -- (4.7124,-0.06) node[below] {\scriptsize$\frac{3\pi}{2}$};
+    % Ticks y-Achse
+    \draw (-0.06,1) -- (0.06,1) node[left=3pt] {\scriptsize$1$};
+    \draw (-0.06,0.7071) -- (0.06,0.7071) node[left=3pt] {\scriptsize$\frac{\sqrt{2}}{2}$};
+    \draw (-0.06,-0.7071) -- (0.06,-0.7071) node[right=3pt] {\scriptsize$-\frac{\sqrt{2}}{2}$};
+    \draw (-0.06,-1) -- (0.06,-1) node[left=3pt] {\scriptsize$-1$};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection*{Präsenzaufgabe 2: Allgemeines Verhalten von Schnitten unter Abbildungen}
+\notizquelleDatei{handschrift/Uebungsblatt 3_261117_094748.PDF}{10--11}
+
+\begin{satz}[Bild des Schnitts zweier Teilmengen]
+Sei $f:X\to Y$ eine Abbildung und seien $A_1,A_2\subset X$ Teilmengen. Dann gilt:
+\begin{enumerate}
+    \item $f(A_1\cap A_2)\subset f(A_1)\cap f(A_2)$.
+    \item Ist $f$ injektiv, so gilt Gleichheit: $f(A_1\cap A_2)=f(A_1)\cap f(A_2)$.
+\end{enumerate}
+\end{satz}
+
+\begin{proof}
+\begin{enumerate}
+    \item Sei $y\in f(A_1\cap A_2)$ beliebig. Dann existiert ein $x\in A_1\cap A_2$ mit $f(x)=y$. Wegen $x\in A_1$ folgt $y=f(x)\in f(A_1)$, und wegen $x\in A_2$ folgt $y=f(x)\in f(A_2)$. Also gilt $y\in f(A_1)\cap f(A_2)$.
+
+    \item Wegen Teil~1 genügt es zu zeigen, dass $f(A_1)\cap f(A_2)\subset f(A_1\cap A_2)$ gilt. Sei dazu $y\in f(A_1)\cap f(A_2)$ beliebig.
+    \begin{itemize}
+        \item Wegen $y\in f(A_1)$ gibt es ein $x_1\in A_1$ mit $f(x_1)=y$.
+        \item Wegen $y\in f(A_2)$ gibt es ein $x_2\in A_2$ mit $f(x_2)=y$.
+    \end{itemize}
+    Aus $f(x_1)=y=f(x_2)$ folgt wegen der Injektivität von $f$, dass $x_1=x_2$. Setzen wir $x:=x_1=x_2$, so gilt $x\in A_1\cap A_2$ und daher $y=f(x)\in f(A_1\cap A_2)$.
+\end{enumerate}
+\end{proof}
